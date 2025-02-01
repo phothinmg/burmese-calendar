@@ -1,0 +1,21 @@
+{
+  "name": "burmese-calendar",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "noda": "node noda-tz/index.js",
+    "check": "biome check --write src && biome format --write src",
+    "build": "tsup"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/node": "^22.13.0",
+    "dax-sh": "^0.42.0",
+    "tsup": "^8.3.6",
+    "typescript": "^5.7.3"
+  }
+}
