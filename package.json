@@ -2,6 +2,12 @@
   "name": "burmese-calendar",
   "version": "0.1.0",
   "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
   "scripts": {
     "noda": "node noda-tz/index.js",
     "check": "biome check --write src && biome format --write src",
