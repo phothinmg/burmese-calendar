@@ -2,12 +2,10 @@ import { defineConfig } from "tsup";
 
 export default defineConfig({
   entry: ["src/index.ts"],
-  outDir: "./cdn",
-  format: "iife",
-  // dts: true,
+  outDir: "./dist",
+  format: "esm",
+  dts: true,
   bundle: true,
-  // sourcemap: true,
-  // treeshake: true,
-  // splitting: true,
+  sourcemap: true,
   clean: true,
 });
