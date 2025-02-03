@@ -582,12 +582,17 @@ class BurmeseCalendar {
    * @param lang - Optional language setting for the calendar. Defaults to "English".
    * @returns The date object containing detailed information for the specified date.
    */
-  public dateView({ year, month, date, lang = "English" }: DateViewOptions) {
+  public dateView({
+    year,
+    month,
+    date,
+    lang = "English",
+  }: DateViewOptions): DateObject {
     this._year = year;
     this._month = month;
     this._date = date;
     this._lang = lang;
-    return this.cal();
+    return this.cal().month_views[month - 1].date_views[date];
   }
   /**
    * Update the calendar to a specific month and return the detailed month view.
@@ -601,12 +606,16 @@ class BurmeseCalendar {
    * @param lang - Optional language setting for the calendar. Defaults to "English".
    * @returns The month object containing detailed information for the specified month.
    */
-  public monthView({ year, month, lang = "English" }: MontnViewOptions) {
+  public monthView({
+    year,
+    month,
+    lang = "English",
+  }: MontnViewOptions): MonthObject {
     this._year = year;
     this._month = month;
     this._lang = lang;
     this._date = 0;
-    return this.cal();
+    return this.cal().month_views[month - 1];
   }
   /**
    * Update the calendar to a specific year and return the detailed year view.

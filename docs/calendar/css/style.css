@@ -23,16 +23,20 @@ html[data-theme="dark"] {
   }
 }
 /* --- */
+@font-face {
+  font-family: "poppin";
+  src: url("./font-file/poppin.ttf");
+  font-weight: 600;
+}
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 body {
-  font-family: "Poppins", serif;
+  font-family: "poppin", serif;
   background-color: var(--bg);
   color: var(--text);
-  font-weight: 600;
 }
 main {
   max-width: 1200px;
@@ -54,12 +58,12 @@ main {
   color: goldenrod;
 }
 select {
-  font-family: "Poppins", serif;
+  font-family: "poppin", serif;
   border-radius: 7px;
   min-width: 100px;
   text-align: center;
   appearance: none;
-  font-weight: 600;
+  cursor: pointer;
 }
 
 /* -- */

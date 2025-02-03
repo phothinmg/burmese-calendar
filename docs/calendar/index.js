@@ -141,12 +141,13 @@ function render() {
       </p>
       <p class="bm-p">
       <span class="bm-span">${day.burmese_cal.burmese_month}</span>
+      <span class="bm-span">${day.burmese_cal.yatyaza_pyathada}</span>
       <span class="bm-span">${
         day.burmese_cal.moon_phase
       }<span class="fm-span"> ${mmd}</span></span>
+       
       </p>
       <p class="holiday">${day.burmese_cal.public_holiday.join("\n")}</p>
-      <p class="bm-p">${day.burmese_cal.yatyaza_pyathada}</p>
   `;
     dadiv.innerHTML = da;
     dadiv.dataset.jdn = day.jdn;
