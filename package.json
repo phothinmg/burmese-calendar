@@ -13,10 +13,15 @@
     "check": "biome check --write src && biome format --write src",
     "build": "tsup"
   },
-  "keywords": [],
+  "keywords": [
+    "Myanmar",
+    "Burma",
+    "Burmese",
+    "Calendar"
+  ],
   "author": "",
-  "license": "ISC",
-  "description": "",
+  "license": "Apache-2.0",
+  "description": "Burmese Calendar Calculation",
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@types/node": "^22.13.0",
