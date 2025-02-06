@@ -138,11 +138,11 @@ if (existsSync(npmout)) {
 }
 if (existsSync(bout)) {
   await cleanDirectory(bout);
-} else {
-  await $.sleep(2000);
-  await mkdir(bout);
 }
 await $.sleep(3000);
+await mkdir(bout);
+
+await $.sleep(1000);
 await mergeFile();
 await $.sleep(1000);
 await createTsconfig();
