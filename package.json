@@ -19,7 +19,7 @@
     "Burmese",
     "Calendar"
   ],
-  "author": "",
+  "author": "Pho Thin Maung",
   "license": "Apache-2.0",
   "description": "Burmese Calendar Calculation",
   "devDependencies": {

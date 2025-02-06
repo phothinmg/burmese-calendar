@@ -1,5 +1,0 @@
-Mobile: 320px - 480px
-Tablet: 481px - 768px
-Laptop/Small Screen: 769px - 1024px
-Desktop/Large Screen: 1025px - 1200px
-Extra Large Screen: 1201px and above

@@ -16,7 +16,7 @@ const res = await $.request(
   `https://nodatime.org/TimeZones?version=${ianaVersion}&format=json`
 ).json();
 //
-const _file = "./src/timezones/typetz.ts";
+const _file = "./src/typetz.ts";
 // collect tz names
 /** @type {string[]} */
 const aa = [];
