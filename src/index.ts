@@ -1,5 +1,4 @@
-import type { TimeZones } from "./typetz.js";
-export type { TimeZones };
+import type { TimeZones } from "./tztype.js";
 // Types
 interface AstroOpts {
   /**
@@ -653,6 +652,7 @@ export function dateTime2Julian({
   timeZone,
   calendarType,
 }: GregorianToJulianOptions): { jd: number; jdn: number } {
+  const _sg = 2361222;
   // setting default values
   const h: number = hour ?? 12;
   const m: number = minute ?? 0;
@@ -684,7 +684,7 @@ export function dateTime2Julian({
   // check calendar type and if pre jd lass than 2361222 + secular difference
   // Gregorian date 1752-Sep-14 JDN = 2361222
   const jd: number =
-    ctt === "Julian" || (ctt === "British" && _jd < this._sg) ? _jd + d : _jd;
+    ctt === "Julian" || (ctt === "British" && _jd < _sg) ? _jd + d : _jd;
   // make sure jdn with tz and calendar type
   const jdn: number = Math.round(jd);
   return {
@@ -1958,6 +1958,19 @@ export class Calendar {
   }
 }
 
+/**
+ * Generates an array of numbers in a specified range.
+ *
+ * This function returns an array containing all the numbers from the `start`
+ * value to the `end` value, inclusive. The `end` value must be greater than
+ * the `start` value, otherwise an error is thrown.
+ *
+ * @param start - The starting number of the range.
+ * @param end - The ending number of the range, must be greater than `start`.
+ * @returns An array of numbers from `start` to `end`.
+ * @throws An error if `end` is not greater than `start`.
+ */
+
 export function numberRange(start: number, end: number): number[] {
   if (end <= start) {
     throw new Error("End must be greater than Start");
@@ -1970,6 +1983,23 @@ export function numberRange(start: number, end: number): number[] {
   return na;
 }
 
-export function blankCellBefore(weekdayId: number): number {
-  return weekdayId % 7;
+/**
+ * Calculates the number of blank cells before and after a month in a calendar.
+ *
+ * @param weekdayId - The day of the week of the first day of the month, where
+ *                    0 is Sunday, 1 is Monday, ..., 6 is Saturday.
+ * @param daysInMonth - The number of days in the month.
+ * @returns An object containing the number of blank cells before and after the
+ *          month.
+ * @example
+ * const result = blankCells(3, 31);
+ * console.log(result.before); // 3
+ * console.log(result.after);  // 1
+ */
+export function blankCells(weekdayId: number, daysInMonth: Day) {
+  const t = (weekdayId % 7) + daysInMonth;
+  return {
+    before: weekdayId % 7,
+    after: t <= 35 ? Math.max(0, 35 - t) : Math.max(0, 42 - t),
+  };
 }

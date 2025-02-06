@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import $ from "dax-sh";
 import fs from "node:fs";
 /**
@@ -16,7 +17,7 @@ const res = await $.request(
   `https://nodatime.org/TimeZones?version=${ianaVersion}&format=json`
 ).json();
 //
-const _file = "./src/typetz.ts";
+const _file = "./src/tztype.ts";
 // collect tz names
 /** @type {string[]} */
 const aa = [];
