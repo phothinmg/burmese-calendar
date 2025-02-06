@@ -42,6 +42,9 @@
     "allowedDeprecatedVersions": {
       "glob": "7.2.3",
       "inflight": "1.0.6"
-    }
+    },
+    "onlyBuiltDependencies": [
+      "@biomejs/biome"
+    ]
   }
 }

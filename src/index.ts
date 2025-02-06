@@ -180,39 +180,7 @@ type GregorianToJulianOptions = {
    */
   timeZone?: TimeZones;
 };
-type Month = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-type Day =
-  | 1
-  | 2
-  | 3
-  | 4
-  | 5
-  | 6
-  | 7
-  | 8
-  | 9
-  | 10
-  | 11
-  | 12
-  | 13
-  | 14
-  | 15
-  | 16
-  | 17
-  | 18
-  | 19
-  | 20
-  | 21
-  | 22
-  | 23
-  | 24
-  | 25
-  | 26
-  | 27
-  | 28
-  | 29
-  | 30
-  | 31;
+
 export type Language = "English" | "Burmese";
 export type CalendarTypes = "British" | "Gregorian" | "Julian";
 export type DateViewObject = {
@@ -507,11 +475,11 @@ export type DateViewOptions = {
   /**
    * Gregorian month
    */
-  month: Month;
+  month: number;
   /**
    * Gregorian day
    */
-  day: Day;
+  day: number;
   /**
    * Language for output
    *
@@ -538,7 +506,7 @@ export type MontnViewOptions = {
   /**
    * Gregorian month
    */
-  month: Month;
+  month: number;
 
   /**
    * Language for output
@@ -1996,7 +1964,10 @@ export function numberRange(start: number, end: number): number[] {
  * console.log(result.before); // 3
  * console.log(result.after);  // 1
  */
-export function blankCells(weekdayId: number, daysInMonth: Day) {
+export function blankCells(
+  weekdayId: number,
+  daysInMonth: number
+): { before: number; after: number } {
   const t = (weekdayId % 7) + daysInMonth;
   return {
     before: weekdayId % 7,
