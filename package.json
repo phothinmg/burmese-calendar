@@ -10,9 +10,9 @@
     }
   },
   "scripts": {
-    "noda": "./build/noda.js",
+    "noda": "./noda.js",
     "check": "biome check --write src && biome format --write src",
-    "build": "./build/index.js"
+    "build": "./build.js"
   },
   "keywords": [
     "Myanmar",
@@ -46,5 +46,8 @@
     "onlyBuiltDependencies": [
       "@biomejs/biome"
     ]
+  },
+  "dependencies": {
+    "lwe8-build": "^0.1.1"
   }
 }

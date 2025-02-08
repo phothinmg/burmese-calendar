@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      lwe8-build:
+        specifier: ^0.1.1
+        version: 0.1.1
     devDependencies:
       '@babel/cli':
         specifier: ^7.26.4
@@ -653,6 +657,9 @@ packages:
   '@types/node@22.13.0':
     resolution: {integrity: sha512-ClIbNe36lawluuvq3+YYhnIN2CELi+6q8NpnM7PYp4hBn/TatfboPgVSm2rwKRfnV2M+Ty9GWDFI64KEe+kysA==}
 
+  '@types/node@22.13.1':
+    resolution: {integrity: sha512-jK8uzQlrvXqEU91UxiK5J7pKHyzgnI1Qnl0QDHIgVGuolJhRb9EEl28Cj9b3rGR8B2lhFCtvIm5os8lFnO/1Ew==}
+
   '@types/uglify-js@3.17.5':
     resolution: {integrity: sha512-TU+fZFBTBcXj/GpDpDaBmgWk/gn96kMZ+uocaFUlV2f8a6WdMzzI44QBCmGcCiYR0Y6ZlNRiyUyKKt5nl/lbzQ==}
 
@@ -922,6 +929,9 @@ packages:
 
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
+
+  lwe8-build@0.1.1:
+    resolution: {integrity: sha512-YjMAVlQsEW8d2fkuPBlw6wjtztg4xKmSwTzx63I18Ek1x4EToNjHKTYKaia3c02Dc2OJb3dNOx+81BsAJNg6Cg==}
 
   make-dir@2.1.0:
     resolution: {integrity: sha512-LS9X+dc8KLxXCb8dni79fLIIUA5VyZoyjSMCwTluaXA0o27cCK0bhXkpgw+sTXVpPy/lSO57ilRixqk0vDmtRA==}
@@ -1825,6 +1835,10 @@ snapshots:
     dependencies:
       undici-types: 6.20.0
 
+  '@types/node@22.13.1':
+    dependencies:
+      undici-types: 6.20.0
+
   '@types/uglify-js@3.17.5':
     dependencies:
       source-map: 0.6.1
@@ -2110,6 +2124,14 @@ snapshots:
   lru-cache@5.1.1:
     dependencies:
       yallist: 3.1.1
+
+  lwe8-build@0.1.1:
+    dependencies:
+      '@types/node': 22.13.1
+      '@types/uglify-js': 3.17.5
+      dax-sh: 0.42.0
+      typescript: 5.7.3
+      uglify-js: 3.19.3
 
   make-dir@2.1.0:
     dependencies:

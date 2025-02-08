@@ -17,7 +17,8 @@ const res = await $.request(
   `https://nodatime.org/TimeZones?version=${ianaVersion}&format=json`
 ).json();
 //
-const _file = "./src/tztype.ts";
+const zones_file = "./src/timezones.ts";
+const type_file = "./src/tztype.ts";
 // collect tz names
 /** @type {string[]} */
 const aa = [];
@@ -27,11 +28,17 @@ for (const zone of res.zones) {
 }
 // make sure its string to join because of "/"
 const zz = aa.map((i) => `"${i}"`);
+//
+const xx = [...zz];
 const cc = zz.join(" | ");
+const _aa = `export const timeZones = [${xx}]`;
 const _bb = `export type TimeZones = ${cc}`;
 // ---------------------------------
-if (fs.existsSync(_file)) {
-  fs.unlinkSync(_file);
+if (fs.existsSync(type_file)) {
+  fs.unlinkSync(type_file);
 }
-
-fs.writeFileSync(_file, _bb);
+if (fs.existsSync(zones_file)) {
+  fs.unlinkSync(zones_file);
+}
+fs.writeFileSync(zones_file, _aa);
+fs.writeFileSync(type_file, _bb);
