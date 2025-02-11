@@ -2,7 +2,7 @@ import { BcAstro } from "./astrodays.js";
 import { BcCal, type JTB } from "./bcal.js";
 import { type CalendarTypes, dateTime2Julian } from "./g2j.js";
 import { uniqNumber, uniqString } from "./helpers.js";
-import { monthsDaysArray } from "./helpers.js";
+import { monthsDaysArray, isLeapYear } from "./helpers.js";
 import { BcHolidays } from "./holidays.js";
 import type { MontnViewOptions, YearViewOptions } from "./options.js";
 import type { DateViewOptions } from "./options.js";
@@ -66,6 +66,7 @@ export class Calendar {
   private cal() {
     // days of each month in this._langyear
     const month_array: number[] = monthsDaysArray(this._year);
+    const diy = isLeapYear(this._year) ? 366 : 365;
     // Sasana year and temp storage for that
     let _ssy: string | number = "";
     const ssy_str: string[] = [];
@@ -81,6 +82,7 @@ export class Calendar {
       year: {
         id: this._year,
         str: T.translateNum(this._year, this._lang),
+        days_in_year: diy,
       },
       sasana_years: {
         ids: [],
@@ -108,6 +110,7 @@ export class Calendar {
           id: i + 1,
           long: T.translateStr(this.MONTHS[i], this._lang) as string,
           short: this.MONTH_SHORT[i],
+          days_in_month: month_array[i],
         },
         sasana_years: {
           ids: [],
@@ -188,6 +191,7 @@ export class Calendar {
             id: i + 1,
             long: T.translateStr(this.MONTHS[i], this._lang) as string,
             short: this.MONTH_SHORT[i],
+            days_in_month: month_array[i],
           },
           day: {
             id: j,
@@ -227,6 +231,7 @@ export class Calendar {
             sabbath: {
               index: astro.sabbath.index,
               str: T.translateStr(astro.sabbath.str, this._lang) as string,
+              school_holiday: bcal.warDwin && astro.sabbath.index === 1,
             },
             yatyaza: {
               index: astro.yatyaza.index,

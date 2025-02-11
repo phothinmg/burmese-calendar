@@ -32,6 +32,10 @@ export type DateViewObject = {
      * Name of Gregorian Month eg.Jan
      */
     short: string;
+    /**
+     * Number of days in this month
+     */
+    days_in_month: number;
   };
   /**
    * Gregorian Day
@@ -150,6 +154,7 @@ export type DateViewObject = {
        */
       index: number;
       str: string;
+      school_holiday: boolean;
     };
     /**
      * Dragon Head Direction
@@ -222,6 +227,10 @@ export type MonthViewObject = {
      * Name of Gregorian Month eg.Jan
      */
     short: string;
+    /**
+     * Number of days in this month
+     */
+    days_in_month: number;
   };
   /**
    * Sasana Year[BE]
@@ -264,6 +273,10 @@ export type YearViewObject = {
      * Gregorian Year in string
      */
     str: string | number;
+    /**
+     * Number of days in this year
+     */
+    days_in_year: number;
   };
   /**
    * Sasana Year[BE]

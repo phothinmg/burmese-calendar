@@ -2,14 +2,7 @@ node_modules
 src
 tsup.config.ts
 biome.jsonc
-noda-tz
-build
 a.ts
-aa.json
-bb.json
-a.cjs
-a.html
-cjs.babel.json
-esm.babel.json
-cjs.tsconfig.json
-esm.tsconfig.json
+cdn
+noda.js
+build.js

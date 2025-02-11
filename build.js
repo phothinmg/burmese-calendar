@@ -1,67 +1,9 @@
 #!/usr/bin/env node
 import { build } from "lwe8-build";
 /** @import {BuildOptions} from "lwe8-build" */
-/**
- * @type {BuildOptions}
- */
-const options = {
-  format: ["esm", "cjs", "browser"],
-  outputDirs: {
-    esm: "./dist",
-    cjs: "./dist",
-    browser: "./cdn",
-  },
-  indexFile: {
-    path: "./src/index.ts",
-    lines: 12,
-  },
-  otherFiles: [
-    {
-      path: "./src/tztype.ts",
-    },
-    {
-      path: "./src/timezones.ts",
-    },
-    {
-      path: "./src/views.ts",
-    },
-    {
-      path: "./src/options.ts",
-      lines: 3,
-    },
-    {
-      path: "./src/ui-functions.ts",
-    },
-    {
-      path: "./src/helpers.ts",
-      removeExport: true,
-    },
-    {
-      path: "./src/astrodays.ts",
-      removeExport: true,
-    },
-    {
-      path: "./src/holidays.ts",
-      removeExport: true,
-    },
-    {
-      path: "./src/bcal.ts",
-      removeExport: true,
-    },
-    {
-      path: "./src/translate.ts",
-      removeExport: true,
-    },
-    {
-      path: "./src/g2j.ts",
-      lines: 1,
-    },
-  ],
-};
 
-await build(options);
-
-/*
+await (async () => {
+  /*
 index - ./src/index.ts
   - line = 12
 /* ---------------------------------------------------/
@@ -80,3 +22,63 @@ other files
 
 Total 12 files , re-export type Language at index
 */
+  /**
+   * @type {BuildOptions}
+   */
+  const options = {
+    format: ["esm", "cjs", "browser"],
+    outputDirs: {
+      esm: "./dist",
+      cjs: "./dist",
+      browser: "./cdn",
+    },
+    indexFile: {
+      path: "./src/index.ts",
+      lines: 12,
+    },
+    otherFiles: [
+      {
+        path: "./src/tztype.ts",
+      },
+      {
+        path: "./src/timezones.ts",
+      },
+      {
+        path: "./src/views.ts",
+      },
+      {
+        path: "./src/options.ts",
+        lines: 3,
+      },
+      {
+        path: "./src/ui-functions.ts",
+      },
+      {
+        path: "./src/helpers.ts",
+        removeExport: true,
+      },
+      {
+        path: "./src/astrodays.ts",
+        removeExport: true,
+      },
+      {
+        path: "./src/holidays.ts",
+        removeExport: true,
+      },
+      {
+        path: "./src/bcal.ts",
+        removeExport: true,
+      },
+      {
+        path: "./src/translate.ts",
+        removeExport: true,
+      },
+      {
+        path: "./src/g2j.ts",
+        lines: 1,
+      },
+    ],
+  };
+
+  await build(options);
+})();
