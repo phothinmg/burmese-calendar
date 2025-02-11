@@ -9,6 +9,7 @@
       "require": "./dist/index.cjs"
     }
   },
+  "browser": "./cdn/index.js",
   "scripts": {
     "noda": "./noda.js",
     "check": "biome check --write src && biome format --write src",

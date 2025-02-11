@@ -3,7 +3,6 @@ src
 tsup.config.ts
 biome.jsonc
 a.ts
-cdn
 noda.js
 build.js
 docs
