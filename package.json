@@ -15,39 +15,24 @@
     "build": "./build.js"
   },
   "keywords": [
-    "Myanmar",
-    "Burma",
-    "Burmese",
-    "Calendar"
+    "Myanmar Calendar",
+    "Burmese Calendar"
   ],
   "author": "Pho Thin Maung",
   "license": "Apache-2.0",
   "description": "Burmese Calendar Calculation",
   "devDependencies": {
-    "@babel/cli": "^7.26.4",
-    "@babel/core": "^7.26.7",
-    "@babel/plugin-transform-modules-commonjs": "^7.26.3",
-    "@babel/plugin-transform-typescript": "^7.26.7",
-    "@babel/preset-env": "^7.26.7",
-    "@babel/preset-typescript": "^7.26.0",
     "@biomejs/biome": "^1.9.4",
     "@types/node": "^22.13.0",
-    "@types/uglify-js": "^3.17.5",
-    "babel-preset-minify": "^0.5.2",
     "dax-sh": "^0.42.0",
-    "typescript": "^5.7.3",
-    "uglify-js": "^3.19.3"
+    "typescript": "^5.7.3"
   },
   "pnpm": {
-    "allowedDeprecatedVersions": {
-      "glob": "7.2.3",
-      "inflight": "1.0.6"
-    },
     "onlyBuiltDependencies": [
       "@biomejs/biome"
     ]
   },
   "dependencies": {
-    "lwe8-build": "^0.1.1"
+    "lwe8-build": "^0.1.2"
   }
 }

@@ -1,20 +1,24 @@
-import type { TimeZones } from "./tztype.js";
-import { BcHolidays } from "./holidays.js";
-import { type CalendarTypes, dateTime2Julian } from "./g2j.js";
 import { BcAstro } from "./astrodays.js";
-import { type Language, BcTranslate } from "./translate.js";
-import { BcCal, JTB } from "./bcal.js";
-import type { DateViewObject, MonthViewObject } from "./views.js";
-import type { YearViewObject } from "./views.js";
-import type { YearViewOptions, MontnViewOptions } from "./options.js";
-import type { DateViewOptions } from "./options.js";
+import { BcCal, type JTB } from "./bcal.js";
+import { type CalendarTypes, dateTime2Julian } from "./g2j.js";
 import { uniqNumber, uniqString } from "./helpers.js";
 import { monthsDaysArray } from "./helpers.js";
+import { BcHolidays } from "./holidays.js";
+import type { MontnViewOptions, YearViewOptions } from "./options.js";
+import type { DateViewOptions } from "./options.js";
+import { BcTranslate, type Language } from "./translate.js";
+import type { TimeZones } from "./tztype.js";
+import type { DateViewObject, MonthViewObject } from "./views.js";
+import type { YearViewObject } from "./views.js";
 
 // New instances for calendar calculation and translate
 const B = new BcCal();
 const T = new BcTranslate();
 //
+/*!
+The Algorithm for calculation of Burmese Calendar (Myanmar Calendar) by Dr. Yan Naing Aye.
+Reference: https://cool-emerald.blogspot.com/2013/06/algorithm-program-and-calculation-of.html
+ */
 export class Calendar {
   /**
    * Name of Months
@@ -40,7 +44,7 @@ export class Calendar {
   /**
    * Weekday Name
    */
-  public WEEK_DAYS: string[] = [
+  private WEEK_DAYS: string[] = [
     "Saturday",
     "Sunday",
     "Monday",
@@ -52,11 +56,11 @@ export class Calendar {
   /**
    * Weekday shorts
    */
-  public WEEK_DAYS_SHORT = this.WEEK_DAYS.map((i) =>
+  private WEEK_DAYS_SHORT = this.WEEK_DAYS.map((i) =>
     i.split("").slice(0, 3).join("")
   );
   private _lang: Language = "English";
-  private _tz: TimeZones = "GMT";
+  private _tz: TimeZones = "Asia/Yangon";
   private _ct: CalendarTypes = "Gregorian";
   private _year: number = new Date().getFullYear();
   private cal() {
@@ -190,11 +194,11 @@ export class Calendar {
             str: T.translateNum(j, this._lang),
           },
           weekday: {
-            id: wdid,
+            index: wdid,
             long: T.translateStr(this.WEEK_DAYS[bcal.wd], this._lang) as string,
             short: this.WEEK_DAYS_SHORT[bcal.wd],
           },
-          isHoliday: hlds.holidaysArray.length > 0 ? true : false,
+          isHoliday: hlds.holidaysArray.length > 0,
           burmese_cal: {
             sasana_year: {
               id: bcal.ssy,
@@ -289,14 +293,14 @@ export class Calendar {
    *
    * @param year - The year to be set in the calendar.
    * @param lang - Optional language setting for the calendar. Defaults to "English".
-   * @param tz - Optional time zone setting for the calendar. Defaults to "GMT".
+   * @param tz - Optional time zone setting for the calendar. Defaults to "Asia/Yangon".
    * @param ct - Optional calendar type setting for the calendar. Defaults to "Gregorian".
    * @returns The year object containing detailed information for the specified year.
    */
   public yearView({
     year,
     lang = "English",
-    tz = "GMT",
+    tz = "Asia/Yangon",
     ct = "Gregorian",
   }: YearViewOptions): YearViewObject {
     this._year = year;
@@ -314,9 +318,9 @@ export class Calendar {
    * calendar.
    *
    * @param year - The year to be set in the calendar.
-   * @param month - The month to be set in the calendar.
+   * @param month - The month to be set in the calendar [1=Jan,...,12=Dec].
    * @param lang - Optional language setting for the calendar. Defaults to "English".
-   * @param tz - Optional time zone setting for the calendar. Defaults to "GMT".
+   * @param tz - Optional time zone setting for the calendar. Defaults to "Asia/Yangon".
    * @param ct - Optional calendar type setting for the calendar. Defaults to "Gregorian".
    * @returns The month object containing detailed information for the specified month.
    */
@@ -324,7 +328,7 @@ export class Calendar {
     year,
     month,
     lang = "English",
-    tz = "GMT",
+    tz = "Asia/Yangon",
     ct = "Gregorian",
   }: MontnViewOptions): MonthViewObject {
     this._year = year;
@@ -333,19 +337,20 @@ export class Calendar {
     this._ct = ct;
     return this.cal().month_views[month - 1];
   }
+
   /**
-   * Update the calendar to a specific date and return the detailed date view.
+   * Get the detailed information for a specific date in the Burmese calendar.
    *
    * This method sets the internal state of the calendar to the specified year,
-   * month, and date, using the provided or default language and time zone. It
+   * month and day, using the provided or default language and time zone. It
    * then computes and returns the detailed information for that date in the
    * Burmese calendar.
    *
    * @param year - The year to be set in the calendar.
-   * @param month - The month to be set in the calendar.
-   * @param day - The day of the month to be set in the calendar.
+   * @param month - The month to be set in the calendar [1=Jan,...,12=Dec].
+   * @param day - The day to be set in the calendar [1-31].
    * @param lang - Optional language setting for the calendar. Defaults to "English".
-   * @param tz - Optional time zone setting for the calendar. Defaults to "GMT".
+   * @param tz - Optional time zone setting for the calendar. Defaults to "Asia/Yangon".
    * @param ct - Optional calendar type setting for the calendar. Defaults to "Gregorian".
    * @returns The date object containing detailed information for the specified date.
    */
@@ -354,7 +359,7 @@ export class Calendar {
     month,
     day,
     lang = "English",
-    tz = "GMT",
+    tz = "Asia/Yangon",
     ct = "Gregorian",
   }: DateViewOptions): DateViewObject {
     this._year = year;

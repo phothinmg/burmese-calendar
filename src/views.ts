@@ -51,11 +51,11 @@ export type DateViewObject = {
    */
   weekday: {
     /**
-     * Week day id,not related to calculation just for place first day of the month on month-view UI
+     * Week day index,not related to calculation just for place first day of the month on month-view UI
      *
      * [0=sun , ... , 6=sat]
      */
-    id: number;
+    index: number;
     /**
      * weekday long
      */

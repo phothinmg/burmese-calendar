@@ -1,6 +1,6 @@
-import { type CalendarTypes } from "./g2j.js";
+import type { CalendarTypes } from "./g2j.js";
+import type { Language } from "./translate.js";
 import type { TimeZones } from "./tztype.js";
-import { type Language } from "./translate.js";
 // ----------------------------------------------------
 export type DateViewOptions = {
   /**
@@ -23,7 +23,7 @@ export type DateViewOptions = {
   lang?: Language;
   /**
    * Timezone
-   * @default GMT
+   * @default "Asia/Yangon"
    */
   tz?: TimeZones;
   /**
@@ -51,7 +51,7 @@ export type MontnViewOptions = {
   lang?: Language;
   /**
    * Timezone
-   * @default GMT
+   * @default "Asia/Yangon"
    */
   tz?: TimeZones;
   /**
@@ -74,7 +74,7 @@ export type YearViewOptions = {
   lang?: Language;
   /**
    * Timezone
-   * @default GMT
+   * @default "Asia/Yangon"
    */
   tz?: TimeZones;
   /**
