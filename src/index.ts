@@ -44,7 +44,7 @@ export class Calendar {
   /**
    * Weekday Name
    */
-  private WEEK_DAYS: string[] = [
+  public WEEK_DAYS: string[] = [
     "Saturday",
     "Sunday",
     "Monday",
@@ -56,7 +56,7 @@ export class Calendar {
   /**
    * Weekday shorts
    */
-  private WEEK_DAYS_SHORT = this.WEEK_DAYS.map((i) =>
+  public WEEK_DAYS_SHORT = this.WEEK_DAYS.map((i) =>
     i.split("").slice(0, 3).join("")
   );
   private _lang: Language = "English";

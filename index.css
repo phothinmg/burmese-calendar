@@ -1,0 +1,42 @@
+@import "tailwindcss";
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@theme {
+  --font-poppins: Poppins, sans-serif;
+}
+@layer base {
+  main {
+    @apply max-w-[1000px] bg-white text-gray-500 items-center p-[20px] my-0 mx-auto;
+  }
+  select {
+    @apply appearance-none  min-w-[100px] max-[768px]:min-w-auto rounded-[7px] cursor-pointer font-poppins text-center text-lg max-[768px]:text-justify max-[768px]:bg-transparent max-[768px]:py-[10px] max-[768px]:px-[5px];
+  }
+}
+
+@layer components {
+  .hd {
+    @apply text-red-500;
+  }
+  .gre {
+    @apply text-green-700;
+  }
+  /* --------------------------------------------------------------- */
+  .topdiv {
+    @apply flex flex-row mb-[5px] rounded-[5px] max-[768px]:flex-col justify-between py-[10px] px-[20px] max-[768px]:m-auto max-[768px]:gap-[5px];
+  }
+  .ymdiv {
+    @apply flex flex-row min-w-[500px] max-w-[700px] max-[768px]:max-w-auto mb-[5px] rounded-[5px] justify-between py-[10px] px-[20px] max-[768px]:m-auto max-[768px]:gap-[5px];
+  }
+  .tbtn {
+    @apply border-0 cursor-pointer hover:text-amber-500 text-lg;
+  }
+  .toph3 {
+    @apply text-lg mt-[7px];
+  }
+  /* --------------------------------------------------------------------------- */
+  .calendar-body {
+    @apply p-[20px] rounded-[5px] shadow-sm;
+  }
+  .wddiv {
+    @apply grid grid-cols-7 gap-[5px] mb-[5px] max-[768px]:hidden;
+  }
+}
