@@ -8,7 +8,7 @@ Reference: https://cool-emerald.blogspot.com/2013/06/algorithm-program-and-calcu
 
 ## About
 
-This package aims to coordinate and maintain the official holidays and leap years of the Myanmar(Burmese) calendar annually, starting from 2000, in line with those published by the government.
+This package provides JavaScript objects focused on calendar views.
 
 ## Install
 
@@ -19,10 +19,11 @@ npm i burmese-calendar
 ```bash
 pnpm i burmese-calendar
 ```
+
 ### For Browser
 
 ```html
-
+<script src="https://cdn.jsdelivr.net/gh/phothinmg/burmese-calendar@main/cdn/index.js"></script>
 ```
 
 ## Use

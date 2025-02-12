@@ -60,6 +60,35 @@ function get_offset(timeZone: TimeZones) {
 
 	return -offset;
 }
+/**
+ * Converts a Gregorian date and time to a Julian Day Number (JDN) and a
+ * Julian Date (JD).
+ *
+ * The function takes a Gregorian year, month, day, hour, minute, and second,
+ * and returns the corresponding Julian Day Number (JDN) and Julian Date (JD).
+ *
+ * The function also takes an optional time zone and calendar type. If a time
+ * zone is provided, the function will calculate the offset of the given time
+ * zone from the local time zone and add it to the Julian Day Number and Date.
+ * If a calendar type is provided, the function will use the secular difference
+ * between the Julian period and the given calendar type to calculate the
+ * Julian Day Number and Date.
+ *
+ * @param {GregorianToJulianOptions} options An object with the following
+ * properties.
+ * @param {number} options.year The Gregorian year.
+ * @param {number} options.month The Gregorian month, 1-12.
+ * @param {number} options.day The Gregorian day, 1-31.
+ * @param {number} [options.hour] The hour, 0-23. Defaults to 12.
+ * @param {number} [options.minute] The minute, 0-59. Defaults to 0.
+ * @param {number} [options.second] The second, 0-59. Defaults to 0.
+ * @param {TimeZones} [options.timeZone] The time zone to use. Defaults to "GMT".
+ * @param {CalendarTypes} [options.calendarType] The calendar type to use.
+ * Defaults to "Gregorian".
+ * @returns {{jd: number, jdn: number}} An object with the following properties:
+ * @returns {number} jd The Julian Date.
+ * @returns {number} jdn The Julian Day Number.
+ */
 export function dateTime2Julian({
 	year,
 	month,
