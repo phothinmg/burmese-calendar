@@ -4,11 +4,11 @@
   --font-poppins: Poppins, sans-serif;
 }
 @layer base {
-  main {
-    @apply max-w-[1200px] bg-white text-gray-800 items-center p-[20px] my-0 mx-auto;
+  body {
+    @apply bg-white dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200 items-center p-[20px] my-0 mx-auto;
   }
   select {
-    @apply appearance-none  min-w-[100px] max-[768px]:min-w-auto rounded-[7px] cursor-pointer font-poppins text-center text-lg max-[768px]:text-justify max-[768px]:bg-transparent max-[768px]:py-[10px] max-[768px]:px-[5px];
+    @apply appearance-none min-w-[180px]  max-[768px]:min-w-[70px] bg-white dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200  cursor-pointer font-poppins text-center text-xl max-[768px]:text-justify  max-[768px]:py-[10px] max-[768px]:px-[5px] max-[768px]:appearance-auto;
   }
 }
 
@@ -27,10 +27,10 @@
     @apply flex flex-row justify-between;
   }
   .tbtn {
-    @apply border-0 cursor-pointer hover:text-amber-500 text-2xl mx-[5px];
+    @apply border-0 cursor-pointer hover:text-amber-500 text-3xl font-semibold mx-[5px] max-[768px]:hidden;
   }
   .toph3 {
-    @apply text-lg mt-[7px];
+    @apply text-lg mt-[7px] font-extrabold;
   }
   /* --------------------------------------------------------------------------- */
   .calendar-body {
@@ -40,7 +40,7 @@
     @apply grid grid-cols-7 gap-[5px] mb-[5px] max-[768px]:hidden;
   }
   .wd {
-    @apply p-[7px] text-center font-medium font-poppins text-sm rounded-[3px] border-1 border-gray-300 max-[768px]:hidden;
+    @apply p-[7px] text-center font-medium font-poppins text-lg rounded-[3px] border-1 border-gray-300 max-[768px]:hidden;
   }
   .daydiv {
     @apply grid  grid-cols-7 gap-[5px] max-[768px]:flex max-[768px]:grid-cols-none max-[768px]:flex-col;
