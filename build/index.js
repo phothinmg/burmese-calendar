@@ -1,7 +1,9 @@
 #!/usr/bin/env node
-import { build } from "lwe8-build";
 /** @import {BuildOptions} from "lwe8-build" */
+import { build } from "lwe8-build";
+import $ from "dax-sh";
 
+$.logLight("Build for calendar");
 await (async () => {
   /*
 index - ./src/index.ts
@@ -28,8 +30,8 @@ Total 12 files , re-export type Language at index
   const options = {
     format: ["esm", "cjs", "browser"],
     outputDirs: {
-      esm: "./dist",
-      cjs: "./dist",
+      esm: "./dist/cal",
+      cjs: "./dist/cal",
       browser: "./cdn",
     },
     indexFile: {
@@ -81,4 +83,30 @@ Total 12 files , re-export type Language at index
   };
 
   await build(options);
+})();
+await $.sleep(1000);
+$.logLight("Build for moon ...");
+await (async () => {
+  /**
+   * @type {BuildOptions}
+   */
+  const options = {
+    format: ["esm", "cjs"],
+    outputDirs: {
+      esm: "./dist/moon",
+      cjs: "./dist/moon",
+    },
+    indexFile: {
+      path: "./src/moon/index.ts",
+      lines: 1,
+    },
+    otherFiles: [
+      {
+        path: "./src/tztype.ts",
+      },
+      {
+        path: "./src/timezones.ts",
+      },
+    ],
+  };
 })();

@@ -30,7 +30,7 @@
     @apply border-0 cursor-pointer hover:text-amber-500 text-3xl font-semibold mx-[5px] max-[768px]:hidden;
   }
   .toph3 {
-    @apply text-lg mt-[7px] font-extrabold;
+    @apply text-3xl mt-[7px];
   }
   /* --------------------------------------------------------------------------- */
   .calendar-body {

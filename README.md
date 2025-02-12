@@ -1,10 +1,6 @@
 # Burmese Calendar(Myanmar Calendar)
 
-## Acknowledgement
-
-The Algorithm for calculation of Burmese Calendar (Myanmar Calendar) by Dr. Yan Naing Aye.
-
-Reference: https://cool-emerald.blogspot.com/2013/06/algorithm-program-and-calculation-of.html
+[![jsDocs.io](https://img.shields.io/badge/jsDocs.io-reference-blue)](https://www.jsdocs.io/package/burmese-calendar) [![Checked with Biome](https://img.shields.io/badge/Checked_with-Biome-60a5fa?style=flat&logo=biome)](https://biomejs.dev)
 
 ## About
 
@@ -36,3 +32,23 @@ const cal = new Calendar();
 
 console.log(cal.dateView({ year: 2025, month: 2, day: 12 }));
 ```
+
+### API Docs at jsDocs.io
+
+https://www.jsdocs.io/package/burmese-calendar
+
+## Acknowledgement
+
+### Burmese Calendar Calculation
+
+The Algorithm for calculation of Burmese Calendar (Myanmar Calendar) by Dr. Yan Naing Aye.
+
+Reference: https://cool-emerald.blogspot.com/2013/06/algorithm-program-and-calculation-of.html
+
+### Julian dates , Moon Phases , Moon Age Calculation
+
+Algorithm from Meeus Astronomical Algorithms for computing dates of moon phases.
+
+A collection of astronomy related programs, algorithms, tutorials, and data by Greg Miller (gmiller@gregmiller.net).
+
+Reference: https://www.celestialprogramming.com/
