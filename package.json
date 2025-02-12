@@ -14,7 +14,7 @@
     "noda": "./build/noda.js",
     "check": "biome check --write src && biome format --write src",
     "build": "./build/index.js",
-    "calbuild": "./build/cal-build.js"
+    "css": "npx @tailwindcss/cli -i ./docs/style.css -o ./docs/index.css --minify"
   },
   "keywords": [
     "Myanmar Calendar",

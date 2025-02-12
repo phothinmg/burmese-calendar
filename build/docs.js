@@ -15,8 +15,6 @@ async function buidUiJs() {
 }
 $.logStep("Start Building .....");
 const start = performance.now();
-$.logStep("Tailwindcss .....");
-await $`npx @tailwindcss/cli -i ./docs/calendar/style.css -o ./docs/calendar/bcal.css --minify`;
 await $.sleep(3000);
 $.logStep("UIJs .....");
 await buidUiJs();
