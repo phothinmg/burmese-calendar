@@ -1,0 +1,96 @@
+@import "tailwindcss";
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@theme {
+  --font-poppins: Poppins, sans-serif;
+}
+@layer base {
+  main {
+    @apply max-w-[1200px] bg-white text-gray-800 items-center p-[20px] my-0 mx-auto;
+  }
+  select {
+    @apply appearance-none  min-w-[100px] max-[768px]:min-w-auto rounded-[7px] cursor-pointer font-poppins text-center text-lg max-[768px]:text-justify max-[768px]:bg-transparent max-[768px]:py-[10px] max-[768px]:px-[5px];
+  }
+}
+
+@layer components {
+  .hd {
+    @apply !text-red-500;
+  }
+  .gre {
+    @apply !text-green-700;
+  }
+  /* --------------------------------------------------------------- */
+  .topdiv {
+    @apply flex flex-row mb-[5px] rounded-[5px] max-[768px]:flex-col justify-between py-[10px] px-[20px] max-[768px]:m-auto max-[768px]:gap-[5px];
+  }
+  .ymdiv {
+    @apply flex flex-row justify-between;
+  }
+  .tbtn {
+    @apply border-0 cursor-pointer hover:text-amber-500 text-2xl mx-[5px];
+  }
+  .toph3 {
+    @apply text-lg mt-[7px];
+  }
+  /* --------------------------------------------------------------------------- */
+  .calendar-body {
+    @apply p-[20px] rounded-[5px] shadow-sm;
+  }
+  .wddiv {
+    @apply grid grid-cols-7 gap-[5px] mb-[5px] max-[768px]:hidden;
+  }
+  .wd {
+    @apply p-[7px] text-center font-medium font-poppins text-sm rounded-[3px] border-1 border-gray-300 max-[768px]:hidden;
+  }
+  .daydiv {
+    @apply grid  grid-cols-7 gap-[5px] max-[768px]:flex max-[768px]:grid-cols-none max-[768px]:flex-col;
+  }
+  .blank {
+    @apply p-[7px] text-center font-medium font-poppins text-sm rounded-[3px] min-h-[150px] border-1 border-gray-300 max-[768px]:hidden;
+  }
+  .day {
+    @apply p-[7px] text-center font-medium font-poppins text-sm rounded-[3px] min-h-[150px] border-1 border-gray-300 cursor-pointer;
+  }
+  /* --------------------- */
+  .datediv {
+    @apply flex justify-between p-[3px] max-[768px]:mb-[3px];
+  }
+  .datespan {
+    @apply text-sm;
+  }
+  .wdspan {
+    @apply hidden max-[768px]:block max-[768px]:font-medium;
+  }
+  .sbhspan {
+    @apply text-green-700 text-xs;
+  }
+  /* -------------------------------- */
+  .bmdiv {
+    @apply flex flex-col mt-[5px] gap-[3px] max-[768px]:flex-row p-[3px] max-[768px]:justify-between;
+  }
+  .bmspan {
+    @apply text-xs text-left;
+  }
+  .fmspan {
+    @apply ml-[7px];
+  }
+  /* ----------------------------------------------- */
+  .holiday {
+    @apply text-red-500 my-[7px] mx-0 pb-[7px] text-xs text-left;
+  }
+  .dayview {
+    @apply p-[20px] rounded-[5px] my-[38px] mx-auto max-w-[300px] shadow-sm;
+  }
+  .backbtn {
+    @apply p-[7px] text-center rounded-[5px] border-1 border-gray-300 cursor-pointer min-w-[70px] mt-[20px] hover:bg-amber-600 hover:text-[#fff];
+  }
+  .dv-h3 {
+    @apply text-lg text-center;
+  }
+  .dvtext {
+    @apply flex flex-col gap-[5px] mt-[10px];
+  }
+  .dvspan {
+    @apply text-sm font-mono;
+  }
+}
