@@ -1,4 +1,7 @@
-# Burmese Calendar(Myanmar Calendar)
+<div align="center">
+<img src="./public/pk.jpg" width="90" height="90" alt="pk">
+<h1>Burmese Calendar(Myanmar Calendar)</h1>
+</div>
 
 [![jsDocs.io](https://img.shields.io/badge/jsDocs.io-reference-blue)](https://www.jsdocs.io/package/burmese-calendar) [![Checked with Biome](https://img.shields.io/badge/Checked_with-Biome-60a5fa?style=flat&logo=biome)](https://biomejs.dev)
 
