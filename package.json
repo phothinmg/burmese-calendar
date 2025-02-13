@@ -4,17 +4,21 @@
   "type": "module",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "types": "./dist/cal/index.d.ts",
+      "import": "./dist/cal/index.js",
+      "require": "./dist/cal/index.cjs"
+    },
+    "./moon": {
+      "types": "./dist/moon/index.d.ts",
+      "import": "./dist/moon/index.js",
+      "require": "./dist/moon/index.cjs"
     }
   },
   "browser": "./cdn/index.js",
   "scripts": {
     "noda": "./build/noda.js",
     "check": "biome check --write src && biome format --write src",
-    "build": "./build/index.js",
-    "css": "npx @tailwindcss/cli -i ./docs/style.css -o ./docs/index.css --minify"
+    "build": "./build/index.js"
   },
   "keywords": [
     "Myanmar Calendar",
@@ -30,10 +34,8 @@
   "description": "Burmese Calendar Calculation",
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
-    "@tailwindcss/cli": "^4.0.6",
     "@types/node": "^22.13.0",
     "dax-sh": "^0.42.0",
-    "tailwindcss": "^4.0.6",
     "typescript": "^5.7.3"
   },
   "pnpm": {
@@ -43,6 +45,6 @@
     ]
   },
   "dependencies": {
-    "lwe8-build": "^0.1.2"
+    "lwe8-build": "^0.1.3"
   }
 }

@@ -109,4 +109,5 @@ await (async () => {
       },
     ],
   };
+  await build(options);
 })();
