@@ -1,5 +1,5 @@
 <div align="center">
-<img src="./public/pk.jpg" width="90" height="90" alt="pk">
+<img src="https://github.com/phothinmg/burmese-calendar/blob/main/public/pk.jpg" width="100" height="100" alt="pk">
 <h1>Burmese Calendar(Myanmar Calendar)</h1>
 </div>
 
@@ -7,7 +7,7 @@
 
 ## About
 
-This package provides JavaScript objects focused on calendar views.
+This package provides JavaScript objects focused on calendar views, Moon Phases calculations.
 
 ## Install
 

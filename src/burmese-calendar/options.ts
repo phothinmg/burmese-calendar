@@ -1,6 +1,6 @@
-import type { CalendarTypes } from "./g2j.js";
+import type { CalendarTypes } from "../gregorian-julian/types";
 import type { Language } from "./translate.js";
-import type { TimeZones } from "./tztype.js";
+import type { TimeZones } from "../timezones/tztype.js";
 // ----------------------------------------------------
 export type DateViewOptions = {
 	/**
