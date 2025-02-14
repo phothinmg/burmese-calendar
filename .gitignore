@@ -1,3 +1,5 @@
 node_modules
 dist
 a.ts
+index.ts
+t.txt

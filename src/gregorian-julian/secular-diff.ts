@@ -5,6 +5,6 @@
  * @returns The secular difference between the Julian period and the Gregorian
  * period, for the given year.
  */
-export default function secularDiff(year: number): number {
-	return Math.floor(year / 100) - Math.floor(year / 400) - 2;
+export function secularDiff(year: number): number {
+  return Math.floor(year / 100) - Math.floor(year / 400) - 2;
 }

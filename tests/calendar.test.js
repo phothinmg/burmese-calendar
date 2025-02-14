@@ -1,10 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import Calendar, {
-  type DateViewObject,
-  type MonthViewObject,
-  type YearViewObject,
-} from "../dist/cal";
+import { Calendar } from "../dist/cal";
 /*
  Some expected values base on https://yan9a.github.io/mmcal/index.htm, mmcal by Dr. Yan Naing Aye,
  creator of the algorithm for calculation of Burmese Calendar (Myanmar Calendar)
@@ -12,7 +8,7 @@ import Calendar, {
 const cal = new Calendar();
 describe("Burmese Calendar Dateview Test", () => {
   it("General", async (t) => {
-    const dv: DateViewObject = cal.dateView({ year: 2025, month: 2, day: 12 });
+    const dv = cal.dateView({ year: 2025, month: 2, day: 12 });
     await t.test("jdn", () => {
       const result = dv.jdn;
       const expected = 2460719;
@@ -110,7 +106,7 @@ describe("Burmese Calendar Dateview Test", () => {
   });
   it("Big Wahtut Test", async (t) => {
     await t.test("Is month of First Waso exist?", () => {
-      const dv: DateViewObject = cal.dateView({
+      const dv = cal.dateView({
         year: 2023,
         month: 6,
         day: 22,
@@ -120,7 +116,7 @@ describe("Burmese Calendar Dateview Test", () => {
       assert.deepEqual(result, expected);
     });
     await t.test("Has month of Nayon 30 days?", () => {
-      const dv: DateViewObject = cal.dateView({
+      const dv = cal.dateView({
         year: 2023,
         month: 6,
         day: 17,
@@ -133,7 +129,7 @@ describe("Burmese Calendar Dateview Test", () => {
       assert.deepEqual(result1, expected1);
     });
     await t.test("Check for jdn of 2nd Waso full moon", () => {
-      const dv: DateViewObject = cal.dateView({ year: 2023, month: 8, day: 1 });
+      const dv = cal.dateView({ year: 2023, month: 8, day: 1 });
       const result = dv.jdn;
       const expected = 2460158;
       assert.deepEqual(result, expected);
@@ -141,7 +137,7 @@ describe("Burmese Calendar Dateview Test", () => {
   });
   it("Normal Wahtut Test", async (t) => {
     await t.test("Is month of First Waso exist?", () => {
-      const dv: DateViewObject = cal.dateView({
+      const dv = cal.dateView({
         year: 2020,
         month: 7,
         day: 7,
@@ -151,7 +147,7 @@ describe("Burmese Calendar Dateview Test", () => {
       assert.deepEqual(result, expected);
     });
     await t.test("Check for jdn of 2nd Waso full moon", () => {
-      const dv: DateViewObject = cal.dateView({ year: 2020, month: 8, day: 3 });
+      const dv = cal.dateView({ year: 2020, month: 8, day: 3 });
       const result = dv.jdn;
       const expected = 2459065;
       assert.deepEqual(result, expected);
@@ -162,19 +158,19 @@ describe("Burmese Calendar Dateview Test", () => {
 describe("Burmese Calendar Month View Test", () => {
   it("Check common year", async (t) => {
     await t.test("Feb has 28 days", () => {
-      const mv: MonthViewObject = cal.monthView({ year: 2025, month: 2 });
+      const mv = cal.monthView({ year: 2025, month: 2 });
       const result = mv.month.days_in_month;
       const expected = 28;
       assert.deepEqual(result, expected);
     });
     await t.test("Burmese Years Array", () => {
-      const mv: MonthViewObject = cal.monthView({ year: 2025, month: 4 });
+      const mv = cal.monthView({ year: 2025, month: 4 });
       const result = mv.burmese_years.ids;
       const expected = [1386, 1387];
       assert.deepEqual(result, expected);
     });
     await t.test("Burmese Months Array", () => {
-      const mv: MonthViewObject = cal.monthView({ year: 2025, month: 4 });
+      const mv = cal.monthView({ year: 2025, month: 4 });
       const result = mv.burmese_months.str;
       const expected = ["Late Tagu", "Tagu", "Kason"];
       assert.deepEqual(result, expected);
@@ -182,7 +178,7 @@ describe("Burmese Calendar Month View Test", () => {
   });
   it("Check leap year", async (t) => {
     await t.test("Feb has 29 days", () => {
-      const mv: MonthViewObject = cal.monthView({ year: 2024, month: 2 });
+      const mv = cal.monthView({ year: 2024, month: 2 });
       const result = mv.month.days_in_month;
       const expected = 29;
       assert.deepEqual(result, expected);
@@ -192,7 +188,7 @@ describe("Burmese Calendar Month View Test", () => {
 
 describe("Burmese Calendar Year View Test", () => {
   it("General", async (t) => {
-    const yv: YearViewObject = cal.yearView({ year: 2025 });
+    const yv = cal.yearView({ year: 2025 });
     await t.test("Sasana Year", () => {
       const result = yv.sasana_years.ids;
       const expected = [2568, 2569];

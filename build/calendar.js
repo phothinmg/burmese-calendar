@@ -20,11 +20,9 @@ await (async () => {
       lines: 13,
     },
     otherFiles: [
+      // types files
       {
         path: "./src/timezones/tztype.ts",
-      },
-      {
-        path: "./src/timezones/timezones.ts",
       },
       {
         path: "./src/burmese-calendar/views.ts",
@@ -36,6 +34,7 @@ await (async () => {
       {
         path: "./src/gregorian-julian/ct-type.ts",
       },
+      // deps files
       {
         path: "./src/burmese-calendar/astrodays.ts",
         removeExport: true,
