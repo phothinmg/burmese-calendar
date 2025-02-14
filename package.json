@@ -16,9 +16,10 @@
   },
   "browser": "./cdn/index.js",
   "scripts": {
-    "noda": "./build/noda.js",
+    "tzname": "./noda/tzname.js",
     "check": "biome check --write src && biome format --write src",
-    "build": "./build/index.js"
+    "calendar": "./build/calendar.js",
+    "test": "npx tsx --test"
   },
   "keywords": [
     "Myanmar Calendar",
@@ -36,12 +37,13 @@
     "@biomejs/biome": "^1.9.4",
     "@types/node": "^22.13.0",
     "dax-sh": "^0.42.0",
+    "tsx": "^4.19.2",
     "typescript": "^5.7.3"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
       "@biomejs/biome",
-      "@parcel/watcher"
+      "esbuild"
     ]
   },
   "dependencies": {

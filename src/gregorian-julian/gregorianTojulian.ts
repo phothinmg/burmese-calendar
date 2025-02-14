@@ -1,7 +1,8 @@
-import type { TimeZones } from "../timezones/tztype.js";
-import secularDiff from "./secular-diff.js";
 import { getOffset } from "../timezones/index.js";
-import type { GregorianToJulianOptions, CalendarTypes } from "./types.js";
+import type { TimeZones } from "../timezones/tztype.js";
+import type { CalendarTypes } from "./ct-type.js";
+import secularDiff from "./secular-diff.js";
+import type { GregorianToJulianOptions } from "./types.js";
 
 /**
  * Converts a Gregorian date and time to a Julian Day Number (JDN) and a
@@ -33,52 +34,52 @@ import type { GregorianToJulianOptions, CalendarTypes } from "./types.js";
  * @returns {number} jdn The Julian Day Number.
  */
 export function gregorian2Julian({
-  year,
-  month,
-  day,
-  hour,
-  minute,
-  second,
-  timeZone,
-  calendarType,
+	year,
+	month,
+	day,
+	hour,
+	minute,
+	second,
+	timeZone,
+	calendarType,
 }: GregorianToJulianOptions): { jd: number; jdn: number } {
-  const _sg = 2361222;
-  // setting default values
-  const h: number = hour ?? 12;
-  const m: number = minute ?? 0;
-  const s: number = second ?? 0;
-  const ctt: CalendarTypes = calendarType ?? "Gregorian";
-  const tzz: TimeZones = timeZone ?? "GMT";
-  const tz: number = getOffset(tzz);
-  // secular difference for calendar types
-  const d: number = secularDiff(year);
-  // To decimal fraction of the day
-  // h , m , s
-  const df: number = (h - 12) / 24 + m / 1440 + s / 86400;
-  // given tz offset
-  const dftz: number = tz / 24;
-  // pre jdn
-  const a: number = Math.floor((month - 3) / 12);
-  const x4: number = year + a;
-  const x3: number = Math.floor(x4 / 100);
-  const x2: number = x4 % 100;
-  const x1: number = month - 12 * a - 3;
-  const _jdn: number =
-    Math.floor((146097 * x3) / 4) +
-    Math.floor((36525 * x2) / 100) +
-    Math.floor((153 * x1 + 2) / 5) +
-    day +
-    1721119;
-  // pre jd with decimal fraction of h,m,s and local tz offset, given tz offset
-  const _jd: number = _jdn + df + dftz;
-  // check calendar type and if pre jd lass than 2361222 + secular difference
-  // Gregorian date 1752-Sep-14 JDN = 2361222
-  const jd: number =
-    ctt === "Julian" || (ctt === "British" && _jd < _sg) ? _jd + d : _jd;
-  // make sure jdn with tz and calendar type
-  const jdn: number = Math.round(jd);
-  return {
-    jd,
-    jdn,
-  };
+	const _sg = 2361222;
+	// setting default values
+	const h: number = hour ?? 12;
+	const m: number = minute ?? 0;
+	const s: number = second ?? 0;
+	const ctt: CalendarTypes = calendarType ?? "Gregorian";
+	const tzz: TimeZones = timeZone ?? "GMT";
+	const tz: number = getOffset(tzz);
+	// secular difference for calendar types
+	const d: number = secularDiff(year);
+	// To decimal fraction of the day
+	// h , m , s
+	const df: number = (h - 12) / 24 + m / 1440 + s / 86400;
+	// given tz offset
+	const dftz: number = tz / 24;
+	// pre jdn
+	const a: number = Math.floor((month - 3) / 12);
+	const x4: number = year + a;
+	const x3: number = Math.floor(x4 / 100);
+	const x2: number = x4 % 100;
+	const x1: number = month - 12 * a - 3;
+	const _jdn: number =
+		Math.floor((146097 * x3) / 4) +
+		Math.floor((36525 * x2) / 100) +
+		Math.floor((153 * x1 + 2) / 5) +
+		day +
+		1721119;
+	// pre jd with decimal fraction of h,m,s and local tz offset, given tz offset
+	const _jd: number = _jdn + df + dftz;
+	// check calendar type and if pre jd lass than 2361222 + secular difference
+	// Gregorian date 1752-Sep-14 JDN = 2361222
+	const jd: number =
+		ctt === "Julian" || (ctt === "British" && _jd < _sg) ? _jd + d : _jd;
+	// make sure jdn with tz and calendar type
+	const jdn: number = Math.round(jd);
+	return {
+		jd,
+		jdn,
+	};
 }

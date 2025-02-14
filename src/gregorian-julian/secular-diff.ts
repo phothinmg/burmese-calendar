@@ -6,5 +6,5 @@
  * period, for the given year.
  */
 export default function secularDiff(year: number): number {
-  return Math.floor(year / 100) - Math.floor(year / 400) - 2;
+	return Math.floor(year / 100) - Math.floor(year / 400) - 2;
 }
