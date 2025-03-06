@@ -9,16 +9,30 @@
     "build": "node-gyp configure build && npm install --unsafe-perm",
     "install": "node-gyp rebuild"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "Node.js native addon",
+    "Gregorian calendar",
+    "Burmese calendar"
+  ],
+  "author": {
+    "name": "Pho Thin Mg",
+    "email": "phothinmg@disroot.org"
+  },
   "license": "Apache-2.0",
   "gypfile": true,
-  "description": "",
+  "description": "Node.js native addon that provides Gregorian calendar to some Burmese calendar information",
   "dependencies": {
     "node-gyp": "^11.1.0"
   },
   "devDependencies": {
     "@types/node": "^22.13.9",
     "typescript": "^5.8.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phothinmg/burmese-calendar.git"
+  },
+  "bugs": {
+    "url": "https://github.com/phothinmg/burmese-calendar/issues"
   }
 }

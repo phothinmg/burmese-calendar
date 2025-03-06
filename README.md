@@ -5,4 +5,4 @@
 
 ### About
 
-Node.js native addon , provides Gregorian calendar to some Burmese Calendar information.
+Node.js native addon that provides Gregorian calendar to some Burmese calendar information.
