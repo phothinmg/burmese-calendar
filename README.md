@@ -4,6 +4,11 @@
 </div>
 
 [![jsDocs.io](https://img.shields.io/badge/jsDocs.io-reference-blue)](https://www.jsdocs.io/package/burmese-calendar)
+[![GitHub License](https://img.shields.io/github/license/phothinmg/burmese-calendar)](https://github.com/phothinmg/burmese-calendar/blob/main/LICENSE)
+![GitHub top language](https://img.shields.io/github/languages/top/phothinmg/burmese-calendar)
+![NPM Last Update](https://img.shields.io/npm/last-update/burmese-calendar)
+
+
 
 
 
