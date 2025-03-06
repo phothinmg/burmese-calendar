@@ -28,4 +28,28 @@ yarn add burmese-calendar
 ```bash
 pnpm add burmese-calendar
 ```
+
+### Example Usage
+
+```js
+import bcal from "burmese-calendar"; // esm
+const bcal = require("burmese-calendar"); //common js
+
+// Date Time to jd and jdn
+const toJulian = bcal.datetimeToJd(2025, 3, 6); // { jd: 2460740.5, jdn: 2460741 }
+
+// Jd , JDN to Date Time
+const dt = bcal.jdToDatetime(2460740.5); //{ year: 2025, month: 3, day: 6, hour: 0, minute: 0, second: 0 }
+const dt = bcal.jdToDatetime(2460741); //{ year: 2025, month: 3, day: 6, hour: 12, minute: 0, second: 0 }
+
+// gregorian calendar date to julian calendar date
+const toj = bcal.calConverter(1, 2025, 3, 6);// { year: 2025, month: 2, day: 21 }
+// julian calendar date to gregorian calendar date
+const tog = bcal.calConverter(0, 2025, 3, 6);// { year: 2025, month: 3, day: 19 }
+
+// getting calendar views
+const dv = bcal.dayView(2025, 3, 6);
+const mv = bcal.monthView(2025, 3);
+const yv = bcal.yearView(2025);
+```
     

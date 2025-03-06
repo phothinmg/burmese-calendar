@@ -79,7 +79,7 @@ declare namespace Bcal {
      */
     mahabote: string;
     /**
-     * Heading of Dragon 
+     * Heading of Dragon
      */
     nagahle: string;
     nakhat: string;
@@ -93,7 +93,7 @@ declare namespace Bcal {
     public_holiday: string[];
   };
 
-  type DateView = {
+  type DayView = {
     jdn: number;
     year: number;
     year_str: string;
@@ -120,7 +120,7 @@ declare namespace Bcal {
     burmese_years_str: string[];
     burmese_months: number[];
     burmese_months_str: string[];
-    date_views: DateView[];
+    date_views: DayView[];
   };
 
   type YearView = {
@@ -227,14 +227,14 @@ declare namespace Bcal {
    * @param {number} month - The month of the date (1-12).
    * @param {number} day - The day of the month.
    * @param {Languages} [lang] - Optional language parameter to specify the language of the date information.
-   * @returns {DateView} An object containing the Gregorian and Burmese calendar details for the specified date.
+   * @returns {DayView} An object containing the Gregorian and Burmese calendar details for the specified date.
    */
-  function dateView(
+  function dayView(
     year: number,
     month: number,
     day: number,
     lang?: Languages
-  ): DateView;
+  ): DayView;
 
   /**
    * @description

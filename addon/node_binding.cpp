@@ -378,7 +378,7 @@ void Init(Local<Object> exports)
     NODE_SET_METHOD(exports, "datetimeToJd", g2j);
     NODE_SET_METHOD(exports, "jdToDatetime", j2g);
     NODE_SET_METHOD(exports, "calConverter", calc);
-    NODE_SET_METHOD(exports, "dateView", dv);
+    NODE_SET_METHOD(exports, "dayView", dv);
     NODE_SET_METHOD(exports, "monthView", mv);
     NODE_SET_METHOD(exports, "yearView", yv);
     NODE_SET_METHOD(exports, "getLocal", getloc);
