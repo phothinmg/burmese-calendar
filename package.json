@@ -1,16 +1,11 @@
 {
   "name": "burmese-calendar",
   "version": "1.1.0",
-  "main": "index.js",
-  "types": "./index.d.ts",
-  "module": "./index.mjs",
+  "type": "module",
   "scripts": {
-    "prepublish": "cp build/Release/bcal.node ./node/bcal.node",
-    "build": "node-gyp configure build && npm install --unsafe-perm",
-    "install": "node-gyp rebuild"
+    "build": "./build.js"
   },
   "keywords": [
-    "Node.js native addon",
     "Gregorian calendar",
     "Burmese calendar"
   ],
@@ -19,11 +14,7 @@
     "email": "phothinmg@disroot.org"
   },
   "license": "ISC",
-  "gypfile": true,
-  "description": "Node.js native addon that provides Gregorian calendar to some Burmese calendar information",
-  "dependencies": {
-    "node-gyp": "^11.1.0"
-  },
+  "description": "Package provides Gregorian calendar to some Burmese calendar information",
   "devDependencies": {
     "@types/node": "^22.13.9",
     "typescript": "^5.8.2"
@@ -34,5 +25,8 @@
   },
   "bugs": {
     "url": "https://github.com/phothinmg/burmese-calendar/issues"
+  },
+  "dependencies": {
+    "lwe8-build": "^0.1.6"
   }
 }
