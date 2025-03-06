@@ -1,6 +1,6 @@
 import type { Language } from "../bcal/translate/types";
 // ----------------------------------------------------
-export type DateViewOptions = {
+export type DayViewOptions = {
 	/**
 	 * Gregorian year
 	 */
@@ -52,7 +52,7 @@ export type YearViewOptions = {
 	lang?: Language;
 };
 
-export type DateViewObject = {
+export type DayViewObject = {
 	/**
 	 * Julian Day Number
 	 */
@@ -310,7 +310,7 @@ export type MonthViewObject = {
 	/**
 	 * DateViewObjects array
 	 */
-	date_views: Array<DateViewObject>;
+	date_views: Array<DayViewObject>;
 };
 // ------------------------------------------------------------------------------------------------------
 

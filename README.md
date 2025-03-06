@@ -11,7 +11,7 @@
 
 ### Overview
 
-The package provides Gregorian calendar to some Burmese calendar information.
+Gregorian calendar to some Burmese calendar information.
 
 Api docs at  https://www.jsdocs.io/package/burmese-calendar.
 
