@@ -7,12 +7,11 @@
 
 
 
-
 ### Overview
 
 Node.js native addon that provides Gregorian calendar to some Burmese calendar information.
 
-Api docs at [JsDocs.io](https://www.jsdocs.io/package/burmese-calendar).
+Api docs at  https://www.jsdocs.io/package/burmese-calendar.
 
 ### Install
 
