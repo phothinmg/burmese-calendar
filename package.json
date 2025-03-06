@@ -1,0 +1,24 @@
+{
+  "name": "burmese-calendar",
+  "version": "0.1.0",
+  "main": "index.js",
+  "types": "./index.d.ts",
+  "module": "./index.mjs",
+  "scripts": {
+    "prepublish": "cp build/Release/bcal.node ./node/bcal.node",
+    "build": "node-gyp configure build && npm install --unsafe-perm",
+    "install": "node-gyp rebuild"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "gypfile": true,
+  "description": "",
+  "dependencies": {
+    "node-gyp": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.9",
+    "typescript": "^5.8.2"
+  }
+}
