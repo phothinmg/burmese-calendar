@@ -2,7 +2,10 @@
     "targets": [
         {
             "target_name": "bcal",
-            "sources": [ "src/node_binding.cpp" ],
+            "sources": [ "addon/node_binding.cpp" ],
+            'include_dirs': [
+                 'thetkarit','thetkarit/cal'
+             ],
             "node_module_path": "./node/bcal.node"
         }
     ]

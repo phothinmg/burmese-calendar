@@ -3,9 +3,9 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**",
-                "${workspaceFolder}/src/nlohmann/**",
-                "/usr/local/include/node"
+                "${workspaceFolder}/thetkarit/cal",
+                "/usr/local/include/node",
+                "${workspaceFolder}/thetkarit"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",

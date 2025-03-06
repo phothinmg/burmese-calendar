@@ -10,7 +10,6 @@ using v8::FunctionCallbackInfo;
 using v8::FunctionTemplate;
 using v8::Integer;
 using v8::Isolate;
-using v8::JSON;
 using v8::Local;
 using v8::Number;
 using v8::Object; // Include Object header
@@ -358,6 +357,22 @@ void yv(const FunctionCallbackInfo<Value> &args)
     Local<Object> dobj = getyv(isolate, year, lang);
     args.GetReturnValue().Set(dobj);
 }
+void getloc(const FunctionCallbackInfo<Value> &args){
+    Isolate *isolate = args.GetIsolate();
+    if (args.Length() > 0)
+    {
+        isolate->ThrowException(Exception::TypeError(
+            String::NewFromUtf8(isolate, "Wrong number of arguments").ToLocalChecked()));
+        return;
+    }
+    GetLocal loc = get_local();
+
+    Local<Object> dobj = Object::New(isolate);
+    dobj->Set(isolate->GetCurrentContext(), String::NewFromUtf8(isolate, "current_year").ToLocalChecked(), Integer::New(isolate, loc._year)).Check();
+    dobj->Set(isolate->GetCurrentContext(), String::NewFromUtf8(isolate, "local_tzoffset").ToLocalChecked(), Number::New(isolate, static_cast<double>(loc.local_offset))).Check();
+    args.GetReturnValue().Set(dobj);
+
+}
 void Init(Local<Object> exports)
 {
     NODE_SET_METHOD(exports, "datetimeToJd", g2j);
@@ -366,6 +381,7 @@ void Init(Local<Object> exports)
     NODE_SET_METHOD(exports, "dateView", dv);
     NODE_SET_METHOD(exports, "monthView", mv);
     NODE_SET_METHOD(exports, "yearView", yv);
+    NODE_SET_METHOD(exports, "getLocal", getloc);
 }
 
 NODE_MODULE(NODE_GYP_MODULE_NAME, [](Local<Object> exports, Local<Value> module, void *priv)

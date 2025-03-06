@@ -1,5 +1,5 @@
-#ifndef THETKARIT_H
-#define THETKARIT_H
+#ifndef TKRIT_HPP_
+#define TKRIT_HPP_
 
 #include "cal/bcal.hpp"
 #include "cal/gcal.hpp"
@@ -301,4 +301,4 @@ namespace tk
 
 } // namespace tk
 
-#endif // THETKARIT_H
+#endif // TKRIT_HPP_

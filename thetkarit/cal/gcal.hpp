@@ -1,5 +1,21 @@
-#ifndef GCAL_H
-#define GCAL_H
+
+/*
+Calculae the relations of  Gregorian calendar and Julian[Julian Calendar Date,Julian Date,Julian Day Number]  
+
+@phothinmg , 2025
+
+References:
+    - A collection of astronomy related programs, algorithms, tutorials,
+      and data by Greg Miller (gmiller@gregmiller.net).
+      https://www.celestialprogramming.com/julian.html
+
+    - Difference between Gregorian and Julian calendar dates
+      https://en.wikipedia.org/wiki/Gregorian_calendar
+  
+*/ 
+
+#ifndef GCAL_HPP_
+#define GCAL_HPP_
 
 #include <string>
 #include <vector>
@@ -97,6 +113,7 @@ namespace gcal
         int month;
         int day;
     };
+    /// @brief Special "Math.floor()" function by Greg Miller (gmiller@gregmiller.net).
     double INT(double d)
     {
         if (d > 0)
@@ -109,7 +126,12 @@ namespace gcal
         }
         return floor(d) - 1;
     }
+    
 
+    /// @brief Calculates the secular difference for the given year,determining the difference between the Julian and Gregorian calendar systems.
+    /// @param y The year for which the secular difference is to be calculated.
+    /// @return The number of days different between Gregorian and Julian calendar systems.
+    /// If converting from Julian to Gregorian, add the result. If converting from Gregorian to Julian, subtract.
     int secular_diff(const int &y)
     {
         return floor(y / 100) - floor(y / 400) - 2;
@@ -187,4 +209,4 @@ namespace gcal
     }
 } // namespace gcal
 
-#endif // GCAL_H
+#endif // GCAL_HPP_

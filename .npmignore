@@ -1,2 +1,10 @@
 node_modules
 package-lock.json
+
+a.js
+a.mjs
+a.cpp
+
+build
+.vscode
+docs
