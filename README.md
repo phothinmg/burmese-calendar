@@ -9,9 +9,6 @@
 ![NPM Last Update](https://img.shields.io/npm/last-update/burmese-calendar)
 
 
-
-
-
 ### Overview
 
 Node.js native addon that provides Gregorian calendar to some Burmese calendar information.
