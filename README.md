@@ -7,13 +7,13 @@
 [![GitHub License](https://img.shields.io/github/license/phothinmg/burmese-calendar)](https://github.com/phothinmg/burmese-calendar/blob/main/LICENSE)
 ![GitHub top language](https://img.shields.io/github/languages/top/phothinmg/burmese-calendar)
 ![NPM Last Update](https://img.shields.io/npm/last-update/burmese-calendar)
-
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/phothinmg/burmese-calendar/.github%2Fworkflows%2Fnpm-publish.yaml)
 
 ### Overview
 
 Gregorian calendar to some Burmese calendar information.
 
-Api docs at  https://www.jsdocs.io/package/burmese-calendar.
+**Api docs :**  https://www.jsdocs.io/package/burmese-calendar.
 
 ### Install
 
@@ -28,6 +28,36 @@ yarn add burmese-calendar
 ```bash
 pnpm add burmese-calendar
 ```
+
+#### Browser
+
+**jsDelivr** : https://www.jsdelivr.com/package/npm/burmese-calendar
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/burmese-calendar/cdn/index.min.js"></script>
+```
+
+**Unpkg**
+
+```html
+<script src="https://unpkg.com/burmese-calendar/cdn/index.js"></script>
+```
+
+### Acknowledgement
+
+### Burmese Calendar Calculation
+
+- The Algorithm for calculation of Burmese Calendar (Myanmar Calendar) by Dr. Yan Naing Aye.
+
+- Reference: https://cool-emerald.blogspot.com/2013/06/algorithm-program-and-calculation-of.html
+
+### Julian dates Calculation
+
+- A collection of astronomy related programs, algorithms, tutorials, and data by Greg Miller (gmiller@gregmiller.net).
+
+- Reference: https://www.celestialprogramming.com/
+
+
 
 ### Example Usage
 

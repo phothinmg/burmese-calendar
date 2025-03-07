@@ -23,10 +23,11 @@ Reference: https://cool-emerald.blogspot.com/2013/06/algorithm-program-and-calcu
 export class BurmeseCal {
   private _lang: Language = "English";
   private _year: number = new Date().getFullYear();
+  private _date = new Date().getDate();
   private _tz: TimeZones = "GMT";
   private _jdnow: number = G.jdNow(this._tz);
-  private is_now(jdn: number): boolean {
-    return jdn === Math.round(this._jdnow);
+  private is_now(d: number): boolean {
+    return d === this._date;
   }
   private cal() {
     // days of each month in this._langyear
@@ -164,7 +165,7 @@ export class BurmeseCal {
             short: G.WEEK_DAYS_SHORT[wd],
           },
           isHoliday: hlds.holidaysArray.length > 0,
-          isNow: this.is_now(jdn),
+          isNow: this.is_now(j),
           burmese_cal: {
             sasana_year: {
               id: bcal.ssy,
