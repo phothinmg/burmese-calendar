@@ -1,4 +1,5 @@
 import type { Language } from "../bcal/translate/types";
+import type { TimeZones } from "../timezones/tztypes";
 // ----------------------------------------------------
 export type DayViewOptions = {
 	/**
@@ -350,4 +351,38 @@ export type YearViewObject = {
 	 * MonthViewObjects array
 	 */
 	month_views: Array<MonthViewObject>;
+};
+/* ------------------------------------------------------- */
+export type CalendarTypes = "gregorian" | "julian";
+export type CalendarConvertOptions = {
+	ct: CalendarTypes;
+	year: number;
+	month: number;
+	day: number;
+};
+
+/**
+ * Interface representing the properties of ThinGyan object.
+ * Contains YearTo, YearFrom, AkyoDay, AkyaDayTime, AkyatDay, AkyatDay2, AtatDayTime, and NewYearDay.
+ */
+export interface ThinGyan {
+	YearTo: number;
+	YearFrom: number;
+	AkyoDay: string;
+	AkyaDayTime: string;
+	AkyatDay: string;
+	AkyatDay2: string;
+	AtatDayTime: string;
+	NewYearDay: string;
+	akyatday2: boolean;
+}
+
+export type G2JOptions = {
+	year: number;
+	month: number;
+	day: number;
+	hour?: number;
+	minutes?: number;
+	seconds?: number;
+	tz?: TimeZones;
 };

@@ -4,15 +4,16 @@ import { BcCal, type JTB } from "./bcal/index.js";
 import { BcTranslate } from "./bcal/translate";
 import type { Language } from "./bcal/translate/types";
 import { helpers } from "./helpers";
-import { BcGcal } from "./julian";
-import type { MontnViewOptions, YearViewOptions } from "./types";
-import type { DayViewOptions } from "./types";
+import { BcGcal } from "./julian/index.js";
+import type { TimeZones } from "./timezones/tztypes.js";
+import type { G2JOptions, MontnViewOptions, YearViewOptions } from "./types";
+import type { DayViewOptions, ThinGyan } from "./types";
 import type { DayViewObject, MonthViewObject } from "./types";
-import type { YearViewObject } from "./types";
+import type { CalendarConvertOptions, YearViewObject } from "./types";
 
-// New instances for BcCal , BcTranslate and BcGcal
-const B = new BcCal();
+// New instances
 const T = new BcTranslate();
+const B = new BcCal();
 const G = new BcGcal();
 //
 /*!
@@ -91,7 +92,7 @@ export class BurmeseCal {
 			for (let j = 1; j <= days_InMonth; j++) {
 				const _month = i + 1;
 				// get jd
-				const { jd, jdn } = G.gregorianToJd({
+				const { jd, jdn } = G.dt2jd({
 					year: this._year,
 					month: _month,
 					day: j,
@@ -320,5 +321,307 @@ export class BurmeseCal {
 		this._year = year;
 		this._lang = lang;
 		return this.cal().month_views[month - 1].date_views[day - 1];
+	}
+	/**
+	 * Calculate the Thingyan festival times for a given Burmese year.
+	 *
+	 * This method computes the Julian Dates and Julian Day Numbers for the
+	 * Atat and Akya times during the Thingyan festival for a specified
+	 * Burmese year. The Thingyan festival marks the Burmese New Year and
+	 * occurs annually.
+	 *
+	 * @param by - The Burmese year for which Thingyan times are calculated.
+	 * @returns An object containing:
+	 *  - ja: Julian Date of Atat Time for the given year.
+	 *  - jk: Julian Date of Akya Time for the given year.
+	 *  - da: Julian Day Number of Atat Time for the given year.
+	 *  - dk: Julian Day Number of Akya Time for the given year.
+	 * @throws Will throw an error if the Burmese year is before 1100,
+	 *         as Thingyan calculations are not applicable.
+	 */
+	private thingyanTime(by: number): {
+		/**
+		 * Julian Date(jd) of Atat Time for given Burmese Year
+		 */
+		ja: number;
+		/**
+		 * Julian Date(jd) of Akya Time for given Burmese Year.
+		 */
+		jk: number;
+		/**
+		 * Julian Day Number(jdn) of Atat Time for given Burmese Year
+		 */
+		da: number;
+		/**
+		 * Julian Day Number(jdn) of Akya Time for given Burmese Year
+		 */
+		dk: number;
+	} {
+		//start of Thingyan
+		const BGNTG: number = 1100;
+		// Burmese year of changing Atar Time.
+		const SE3: number = 1312;
+		if (by < BGNTG) {
+			throw new Error("Thingyan was started Burmese Year of 1100");
+		}
+		// Julian Date(jd) of Atat Time for given Burmese Year
+		const ja: number = B.SY * by + B.MO;
+		// Julian Day Number(jdn) of Atat Time for given Burmese Year
+		const da: number = Math.round(ja);
+		// Length of Thingyan festival in days.
+		const atarTime: number = by >= SE3 ? 2.169918982 : 2.1675;
+		// Julian Date(jd) of Akya Time for given Burmese Year.
+		const jk: number = ja - atarTime;
+		// Julian Day Number(jdn) of Akya Time for given Burmese Year
+		const dk: number = Math.round(jk);
+		return { ja, jk, da, dk };
+	}
+	private thingyanDays(yearTo: number): ThinGyan {
+		// Calculate the Myanmar year from which the festival dates are calculated.
+		const YearTo: number = yearTo;
+		// Calculate the Myanmar year to which the festival dates are calculated.
+		const YearFrom: number = yearTo - 1;
+
+		// Calculate the Julian Date and Julian Day Number for the festival dates.
+		const tgTime = this.thingyanTime(YearTo);
+		// Calculate the Atat Time for the given Myanmar year.
+		const atat = G.jd2dt(tgTime.ja);
+
+		// Format the Atat Time as a string.
+		const AtatDayTime: string = new Date(
+			atat.year,
+			atat.month - 1,
+			atat.day,
+			atat.hour,
+			atat.minutes,
+			atat.seconds,
+		).toLocaleString("en-US", {
+			year: "numeric",
+			month: "short",
+			day: "2-digit",
+			weekday: "short",
+			hour12: true,
+			hour: "2-digit",
+			minute: "2-digit",
+			second: "2-digit",
+		});
+
+		// Calculate the Akya Time for the given Myanmar year.
+		const akya = G.jd2dt(tgTime.jk);
+
+		// Format the Akya Time as a string.
+		const AkyaDayTime: string = new Date(
+			akya.year,
+			akya.month - 1,
+			akya.day,
+			akya.hour,
+			akya.minutes,
+			akya.seconds,
+		).toLocaleString("en-US", {
+			year: "numeric",
+			month: "short",
+			day: "2-digit",
+			weekday: "short",
+			hour12: true,
+			hour: "2-digit",
+			minute: "2-digit",
+			second: "2-digit",
+		});
+
+		// Calculate the day of the Akyo Time for the given Myanmar year.
+		const akyo = G.jd2dt(tgTime.dk - 1);
+		// Format the Akyo Time day as a string.
+		const AkyoDay: string = new Date(
+			akyo.year,
+			akyo.month - 1,
+			akyo.day,
+		).toLocaleString("en-US", {
+			year: "numeric",
+			month: "short",
+			day: "2-digit",
+			weekday: "short",
+		});
+
+		// Calculate the day of the Akyat Time for the given Myanmar year.
+		const akyat = G.jd2dt(tgTime.dk + 1);
+		// Format the Akyat Time day as a string.
+		const AkyatDay: string = new Date(
+			akyat.year,
+			akyat.month - 1,
+			akyat.day,
+		).toLocaleString("en-US", {
+			year: "numeric",
+			month: "short",
+			day: "2-digit",
+			weekday: "short",
+		});
+
+		// Check if there is a second Akyat Time and calculate its day if there is.
+		let AkyatDay2 = "";
+		let akyatday2 = false;
+		if (tgTime.da - tgTime.dk > 2) {
+			const akyat2 = G.jd2dt(tgTime.da - 1);
+			AkyatDay2 = new Date(
+				akyat2.year,
+				akyat2.month - 1,
+				akyat2.day,
+			).toLocaleString("en-US", {
+				year: "numeric",
+				month: "short",
+				day: "2-digit",
+				weekday: "short",
+			});
+			akyatday2 = true;
+		}
+		// Calculate the day of the New Year Day following the festival.
+		const newyear = G.jd2dt(tgTime.da + 1);
+		// Format the New Year Day as a string.
+		const NewYearDay: string = new Date(
+			newyear.year,
+			newyear.month - 1,
+			newyear.day,
+		).toLocaleString("en-US", {
+			year: "numeric",
+			month: "short",
+			day: "2-digit",
+			weekday: "short",
+		});
+
+		// Return the festival dates and times.
+		return {
+			YearFrom,
+			YearTo,
+			AkyoDay,
+			AkyaDayTime,
+			AkyatDay,
+			AkyatDay2,
+			AtatDayTime,
+			NewYearDay,
+			akyatday2,
+		};
+	}
+	private thingyanFromG(gYear: number): ThinGyan {
+		const jdn = G.dt2jd({ year: gYear, month: 1, day: 1 }).jdn;
+		const by = B.j2b(jdn).by;
+		const yearTo = by + 1;
+		return this.thingyanDays(yearTo);
+	}
+	/**
+	 * Calculates the Thingyan festival dates and times for the given year.
+	 *
+	 * The method takes two parameters: the year and the year type. The year
+	 * type can be either "Burmese" or "Gregorian". If the year type is not
+	 * provided, the default value is "Gregorian". If the year type is "Burmese",
+	 * the method returns the Thingyan festival dates and times for the given
+	 * Burmese year. If the year type is "Gregorian", the method returns the
+	 * Thingyan festival dates and times for the given Gregorian year.
+	 *
+	 * @param year - The year to be calculated.
+	 * @param yearType - The year type. The default value is "Gregorian".
+	 * @returns An object with the following properties:
+	 *   - YearFrom: The Burmese year that the festival starts.
+	 *   - YearTo: The Burmese year that the festival ends.
+	 *   - AkyoDay: The day of the first day of the festival.
+	 *   - AkyaDayTime: The time of the first day of the festival.
+	 *   - AkyatDay: The day of the second day of the festival.
+	 *   - AkyatDay2: The day of the third day of the festival.
+	 *   - AtatDayTime: The time of the third day of the festival.
+	 *   - NewYearDay: The day of the New Year Day following the festival.
+	 *   - akyatday2: A boolean indicating whether the third day of the festival
+	 *     falls on the same day as the New Year Day.
+	 */
+	public thingyan(year: number, yearType?: "Burmese" | "Gregorian"): ThinGyan {
+		const yt = yearType ?? "Gregorian";
+		return yt === "Burmese"
+			? this.thingyanDays(year)
+			: this.thingyanFromG(year);
+	}
+
+	/**
+	 * Gets the Burmese year type for the given year.
+	 *
+	 * The method takes a Burmese year and an optional language setting and
+	 * returns the corresponding year type in the specified language.
+	 *
+	 * @param by - The Burmese year.
+	 * @param lang - Optional language setting for the year type. Defaults to "English".
+	 * @returns The Burmese year type in the specified language.
+	 */
+	public burmeseYearType(by: number, lang?: Language): string {
+		const lan = lang ?? "English";
+		const yt = B.getLeapYearData(by).myt;
+		const byt = B.YearTypes[yt];
+		return T.translateStr(byt, lan) as string;
+	}
+	/**
+	 * Converts a given date and time to the Julian Date and Julian Day Number.
+	 *
+	 * This method takes a specified date and time, including the time zone,
+	 * and calculates the corresponding Julian Date (jd) and Julian Day Number (jdn).
+	 *
+	 * @param year - The year of the date.
+	 * @param month - The month of the date [1=Jan,...,12=Dec].
+	 * @param day - The day of the month.
+	 * @param hour - The hour of the day (default is 12).
+	 * @param minutes - The minutes past the hour (default is 0).
+	 * @param seconds - The seconds past the minute (default is 0).
+	 * @param tz - The time zone of the date and time (default is "GMT").
+	 * @returns An object containing:
+	 *  - jd: The calculated Julian Date.
+	 *  - jdn: The calculated Julian Day Number.
+	 */
+
+	public datetimeToJd({
+		year,
+		month,
+		day,
+		hour = 12,
+		minutes = 0,
+		seconds = 0,
+		tz = "GMT",
+	}: G2JOptions): {
+		jd: number;
+		jdn: number;
+	} {
+		return G.dt2jd({ year, month, day, hour, minutes, seconds, tz });
+	}
+
+	/**
+	 * Converts a Julian Date (jd) to a datetime object.
+	 * @param jd - The Julian Date to be converted.
+	 * @param tz - Optional time zone setting for the datetime object. Defaults to "GMT".
+	 * @returns An object with the year, month, day, hour, minutes and seconds of the datetime object.
+	 */
+	public jdToDatetime(
+		jd: number,
+		tz: TimeZones = "GMT",
+	): {
+		year: number;
+		month: number;
+		day: number;
+		hour: number;
+		minutes: number;
+		seconds: number;
+	} {
+		return G.jd2dt(jd, tz);
+	}
+	/**
+	 * Convert a date between Gregorian and Julian calendars.
+	 *
+	 * This method takes an object with the following properties:
+	 *   - ct: The calendar type to convert to. Either "julian" or "gregorian".
+	 *   - year: The year to be converted.
+	 *   - month: The month to be converted [1=Jan,...,12=Dec].
+	 *   - day: The day to be converted [1-31].
+	 *
+	 * The method returns an object with the year, month and day of the converted
+	 * date.
+	 */
+	public calendarConverter({ ct, year, month, day }: CalendarConvertOptions): {
+		year: number;
+		month: number;
+		day: number;
+	} {
+		return G.calC({ ct, year, month, day });
 	}
 }

@@ -10,12 +10,12 @@ await (async () => {
     format: ["esm", "cjs", "browser"],
     indexFile: {
       path: "./src/index.ts",
-      lines: 11,
+      lines: 12,
     },
     outputDirs: {
       esm: "./dist",
       cjs: "./dist",
-      browser: "./dist/cdn",
+      browser: "./cdn",
     },
     otherFiles: [
       {
@@ -26,18 +26,15 @@ await (async () => {
       },
       {
         path: "./src/types/index.ts",
-        lines: 1,
+        lines: 2,
       },
       // timezones --start
       {
         path: "./src/timezones/index.ts",
-        lines: 2,
+        lines: 1,
       },
       {
         path: "./src/timezones/tztypes.ts",
-      },
-      {
-        path: "./src/timezones/timezoneInfo.ts",
       },
       {
         path: "./src/timezones/timezoneNames.ts",
@@ -95,7 +92,8 @@ await (async () => {
       // Bcal -- end
       {
         path: "./src/julian/index.ts",
-        lines: 3,
+        lines: 4,
+        removeExport: true,
       },
     ],
   };

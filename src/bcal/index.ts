@@ -89,19 +89,19 @@ export class BcCal {
 	/**
 	 * The length of a solar year in the Burmese calendar is defined as 1577917828/4320000 (365.2587565) days [Irwin, 1909].
 	 */
-	protected SY: number = 1577917828 / 4320000;
+	public SY: number = 1577917828 / 4320000;
 	/**
 	 * The length of a lunar month in the Burmese calendar is defined as 1577917828/53433336 (29.53058795) days [Irwin, 1909].
 	 */
-	protected LM: number = 1577917828 / 53433336;
+	public LM: number = 1577917828 / 53433336;
 	/**
 	 * Estimated Julian Date value of the starting time of the Burmese year zero [Yan Naing Aye,2013]
 	 */
-	protected MO = 1954168.050623;
+	public MO = 1954168.050623;
 	/**
 	 * List of Myanmer month name
 	 */
-	protected BurmeseMonthName: string[] = [
+	public BurmeseMonthName: string[] = [
 		"First Waso",
 		"Tagu",
 		"Kason",
@@ -121,7 +121,12 @@ export class BcCal {
 	/**
 	 * Moon Phases
 	 */
-	protected MoonPhase: string[] = ["Waxing", "Full Moon", "Waning", "New Moon"];
+	public MoonPhase: string[] = ["Waxing", "Full Moon", "Waning", "New Moon"];
+	public YearTypes: string[] = [
+		"Common Year",
+		"Warhtat Year",
+		"Big Warhtat Year",
+	];
 	/**
 	 * ဝါဆိုညှိကိန်း WO အတွက် ရှာလိုသောမြန်မာနှစ် FME တွင်ပါမပါ ပါလျင် ကွဲလွဲသောနှစ်အရေအတွက်အား ရရှိမည့် လုပ်ဆောင်ချက်ဖြစ်သည်။
 	 *
@@ -132,7 +137,7 @@ export class BcCal {
 	 * @param by Burmese Year
 	 * @returns ကွဲလွဲသောနှစ်အရေအတွက်
 	 */
-	protected searchFme(by: number): number {
+	public searchFme(by: number): number {
 		const found: number[] | undefined = FME.find((i: number[]) => i[0] === by);
 		let result = 0;
 		if (found !== undefined) {
@@ -147,7 +152,7 @@ export class BcCal {
 	 * @param by The Burmese year to check
 	 * @returns If the year is valid
 	 */
-	protected validYear = (by: number): boolean => {
+	public validYear = (by: number): boolean => {
 		const is4 = by.toString().split("").length <= 4;
 		return by >= 0 && Number.isInteger(by) && is4;
 	};
@@ -185,7 +190,7 @@ export class BcCal {
 	 *    - id = 1.1 : Makaranta system 1 (ME 0 - 797)
 	 * @param by Burmese Year
 	 */
-	protected eraId = (by: number) => {
+	public eraId = (by: number) => {
 		if (!this.validYear(by)) {
 			throw new Error("Invalid Burmese Year");
 		}
@@ -209,7 +214,7 @@ export class BcCal {
 	 * @param by Burmese year
 	 * @returns { WO: number; NM: number } - warhtat offset to compensate and number of months to find excess days
 	 */
-	protected getWoNm = (by: number): GetWoNm => {
+	public getWoNm = (by: number): GetWoNm => {
 		const eraConfigurations: Record<EraIds, GetWoNm> = {
 			3: { WO: -0.5, NM: 8 },
 			2: { WO: -1, NM: 4 },
@@ -234,7 +239,7 @@ export class BcCal {
 	 * @param by Burmese Year
 	 *
 	 */
-	protected getTaTw = (by: number) => {
+	public getTaTw = (by: number) => {
 		// ရက်ပိုညှိကိန်း TA ဝါထပ်ကိန်း TW
 		const { NM } = this.getWoNm(by);
 		return {
@@ -247,7 +252,7 @@ export class BcCal {
 	 *
 	 * @param by Burmese Year
 	 */
-	protected excessDays = (by: number): number => {
+	public excessDays = (by: number): number => {
 		// ed =( SY ( my + 3739 ) ) mod LM
 		const edays: number = (this.SY * this.by2ky(by)) % this.LM;
 		/*
@@ -265,15 +270,19 @@ export class BcCal {
 	public newYearTime = (by: number): number => {
 		return this.SY * by + this.MO;
 	};
+	public get_byt(by: number) {
+		const ed = this.excessDays(by);
+		const { TW } = this.getTaTw(by);
+		const myt = ed >= TW ? 1 : 0;
+		return myt;
+	}
 	/**
 	 * Checking a year for intercalary month or not
 	 * @param by Burmese Year
 	 * @returns 1=warhtat, 0=common
 	 */
 	public checkWarhtat = (by: number) => {
-		const ed = this.excessDays(by);
-		const { TW } = this.getTaTw(by);
-		const myt = ed >= TW ? 1 : 0;
+		const myt = this.get_byt(by);
 		let result = 0;
 		if (WTE.zero.includes(by)) {
 			result = 0;
@@ -330,7 +339,7 @@ export class BcCal {
 	 * @param bm The month in the Burmese calendar [0-14].
 	 * @returns The length of the month (30 for even months, 29 for odd months, with adjustments for "Nayon"=30 for "Big Warhtat").
 	 */
-	protected monthLength = (yt: number, bm: number) => {
+	public monthLength = (yt: number, bm: number) => {
 		/* စုံ = ၃၀ မ = ၂၉ */
 		let ml = 30 - (bm % 2);
 		/*

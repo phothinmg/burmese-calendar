@@ -48,7 +48,7 @@ fetch(url)
       2
     )}`;
     const type_file = "./src/timezones/tztypes.ts";
-    const info_file = "./src/timezones/timezoneInfo.ts";
+    //const info_file = "./src/timezones/timezoneInfo.ts";
     const zones_file = "./src/timezones/timezoneNames.ts";
     if (fs.existsSync(type_file)) {
       fs.unlinkSync(type_file);
@@ -61,5 +61,5 @@ fetch(url)
     }
     fs.writeFileSync(zones_file, namesText);
     fs.writeFileSync(type_file, _bb);
-    fs.writeFileSync(info_file, info_text);
+    //fs.writeFileSync(info_file, info_text);
   });

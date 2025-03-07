@@ -9,7 +9,7 @@
       "require": "./dist/index.cjs"
     }
   },
-  "browser": "./dist/cdn/index.js",
+  "browser": "./cdn/index.js",
   "scripts": {
     "check": "biome check --write src && biome format --write src",
     "build": "./build.js",
@@ -21,7 +21,8 @@
   ],
   "author": {
     "name": "Pho Thin Mg",
-    "email": "phothinmg@disroot.org"
+    "email": "phothinmg@disroot.org",
+    "url": "https://github.com/phothinmg"
   },
   "license": "ISC",
   "description": "Gregorian calendar to some Burmese calendar information",

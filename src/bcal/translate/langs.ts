@@ -105,4 +105,8 @@ export const langs: string[][] = [
 	["National Day", "အမျိုးသားနေ့"],
 	["Karen New Year's Day", "ကရင်နှစ်သစ်ကူး"],
 	["Tabaung Pwe", "တပေါင်းပွဲ"],
+	//
+	["Common Year", "သာမန်နှစ်"],
+	["Warhtat Year", "ဝါထပ်နှစ်"],
+	["Big Warhtat Year", "ဝါကြီးထပ်နှစ်"],
 ];
