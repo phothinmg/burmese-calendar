@@ -12,6 +12,29 @@
 
 Gregorian calendar to some Burmese calendar information.
 
+
+---
+
+### Acknowledgement
+
+### Burmese Calendar
+
+- The Algorithm for calculation of Burmese Calendar (Myanmar Calendar) and astrological calendar days by Dr. Yan Naing Aye.
+
+- References: 
+
+  https://cool-emerald.blogspot.com/2013/06/algorithm-program-and-calculation-of.html
+
+  https://cool-emerald.blogspot.com/2013/12/myanmar-astrological-calendar-days.html
+
+### Julian Date and Moon Phases
+
+- A collection of astronomy related programs, algorithms, tutorials, data and implementation of the algorithm from Meeus' Astronomical Algorithms for computing the dates of the phases of the Moon by Greg Miller (gmiller@gregmiller.net).
+
+- Reference: https://www.celestialprogramming.com/
+
+---
+
 **Api docs :**  [https://www.jsdocs.io/package/burmese-calendar](https://www.jsdocs.io/package/burmese-calendar)
 
 ### Install
@@ -44,19 +67,7 @@ pnpm add burmese-calendar
 
 ---
 
-### Acknowledgement
 
-### Burmese Calendar Calculation
-
-- The Algorithm for calculation of Burmese Calendar (Myanmar Calendar) by Dr. Yan Naing Aye.
-
-- Reference: https://cool-emerald.blogspot.com/2013/06/algorithm-program-and-calculation-of.html
-
-### Julian dates Calculation
-
-- A collection of astronomy related programs, algorithms, tutorials, and data by Greg Miller (gmiller@gregmiller.net).
-
-- Reference: https://www.celestialprogramming.com/
 
 
 
