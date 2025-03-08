@@ -101,7 +101,7 @@ namespace bcal
     };
     struct GetWoNm
     {
-        float WO;
+        double WO;
         int NM;
     };
     struct GetTaTw
@@ -209,8 +209,8 @@ namespace bcal
         double SY = 1577917828.0 / 4320000.0;  // solar year (365.2587565)
         double LM = 1577917828.0 / 53433336.0; // lunar month (29.53058795)
         int NM = getWoNm(by).NM;
-        float TA = (12 - NM) * (SY / 12 - LM);
-        float TW = LM - NM * (SY / 12 - LM);
+        float TA = static_cast<float>((12 - NM) * (SY / 12 - LM));
+        float TW = static_cast<float>(LM - NM * (SY / 12 - LM));
         return {
             TA, TW};
     }
@@ -271,7 +271,7 @@ namespace bcal
     int searchWasoFullMoon(int by)
     {
         double LM = 1577917828.0 / 53433336.0; // lunar month (29.53058795)
-        return round(newYearTime(by) - excessDays(by) + 4.5 * LM + getWoNm(by).WO);
+        return static_cast<int>(round(newYearTime(by) - excessDays(by) + 4.5 * LM + getWoNm(by).WO));
     }
 
     YearData getYearData(int by)
@@ -293,7 +293,7 @@ namespace bcal
             }
         }
         int b3 = (b1 - bs) % 354;
-        int myt = (a == 0) ? a : std::floor(b3 / 31) + a;
+        int myt = static_cast<int>((a == 0) ? a : std::floor(b3 / 31) + a);
         int fm = (a == 1) ? b1 : bs + 354 * L;
         int err = (a == 1 && b3 != 31 && b3 != 30) ? 1 : 0;
         int tg1 = bs + 354 * L - 102;
@@ -302,10 +302,10 @@ namespace bcal
     }
     int monthLength(int byt, int bm)
     {
-        int ml = 30 - fmod(bm, 2); /* စုံ = ၃၀ မ = ၂၉ */
+        int ml = static_cast<int>(30 - fmod(bm, 2)); /* စုံ = ၃၀ မ = ၂၉ */
         if (bm == 3)
         {
-            ml += floor(byt / 2);
+            ml += static_cast<int>(floor(byt / 2));
         }
         return ml;
     }
@@ -314,33 +314,33 @@ namespace bcal
     {
         double SY = 1577917828.0 / 4320000.0; // solar year (365.2587565)
         double MO = 1954168.050623;
-        int j = round(jd);
+        int j = static_cast<int>(round(jd));
 
-        int by = floor((j - 0.5 - MO) / SY); // return
+        int by = static_cast<int>(floor((j - 0.5 - MO) / SY)); // return
 
         YearData yd = getYearData(by);
         double dd = j - yd.tg1 + 1; // ရက်အရေအတွက်
-        int b = floor(yd.myt / 2);
-        int c = floor(1 / (yd.myt + 1));
+        int b = static_cast<int>(floor(yd.myt / 2));
+        int c = static_cast<int>(floor(1 / (yd.myt + 1)));
 
         int byl = 354 + (1 - c) * 30 + b; // return
-        int bmt = floor((dd - 1) / byl);  // return month type: late =1 or early = 0
+        int bmt = static_cast<int>(floor((dd - 1) / byl));  // return month type: late =1 or early = 0
 
         dd -= bmt * byl;
 
-        int a = floor((dd + 423) / 512); // adjust day count and threshold
+        int a = static_cast<int>(floor((dd + 423) / 512)); // adjust day count and threshold
 
-        int bm = floor((dd - b * a + c * a * 30 + 29.26) / 29.544); // return
+        int bm = static_cast<int>(floor((dd - b * a + c * a * 30 + 29.26) / 29.544)); // return
 
-        int e = floor((bm + 12) / 16);
-        int f = floor((bm + 11) / 16);
+        int e = static_cast<int>(floor((bm + 12) / 16));
+        int f = static_cast<int>(floor((bm + 11) / 16));
 
-        int bd = dd - floor(29.544 * bm - 29.26) - b * e + c * f * 30;    // return
+        int bd = static_cast<int>(dd - floor(29.544 * bm - 29.26) - b * e + c * f * 30);    // return
         bm += f * 3 - e * 4 + 12 * bmt;                                   // adjust month numbers for late months
         int byt = yd.myt;                                                 // retrun
         int bml = monthLength(byt, bm);                                   // return
-        int mp = floor((bd + 1) / 16) + floor(bd / 16) + floor(bd / bml); // return
-        int fd = bd - 15 * floor(bd / 16);                                // return
+        int mp = static_cast<int>(floor((bd + 1) / 16) + floor(bd / 16) + floor(bd / bml)); // return
+        int fd = static_cast<int>(bd - 15 * floor(bd / 16));                                // return
         int ssy = by + 1182;                                              // return
 
         int wsofm = yd.fm;
@@ -393,7 +393,7 @@ namespace bcal
         int m1 = bm;
         if (bm <= 0)
             m1 = 4; // first warso is considered warso
-        int index = (floor(m1 % 12)) / 3;
+        int index = static_cast<int>((floor(m1 % 12)) / 3);
         std::string str = a[index];
         return str;
     }
@@ -411,8 +411,8 @@ namespace bcal
             "", "Yatyaza"};
         int m1 = bm % 4;
         int index = 0;
-        int wd1 = (floor(m1 / 2)) + 4;
-        int wd2 = (1 - (floor(m1 / 2)) + (m1 % 2)) * (1 + 2 * (m1 % 2));
+        int wd1 = static_cast<int>((floor(m1 / 2)) + 4);
+        int wd2 = static_cast<int>((1 - (floor(m1 / 2)) + (m1 % 2)) * (1 + 2 * (m1 % 2)));
         if (wd == wd1 || wd == wd2)
             index = 1;
         std::string str = a[index];
@@ -467,8 +467,8 @@ namespace bcal
             atar = atat - 2.1675;
         }
 
-        int akyaNay = floor(atar); // akyaNay in jd
-        int atatNay = floor(atat); // atatNay in jd
+        int akyaNay = static_cast<int>(floor(atar)); // akyaNay in jd
+        int atatNay = static_cast<int>(floor(atat)); // atatNay in jd
 
         vector<string> aa;
         if (y > 2018 && m == 1 && d == 1)

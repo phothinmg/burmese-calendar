@@ -37,7 +37,6 @@ namespace tk
     using gcal::jd2dt;
     using gcal::jdjdn;
     using gcal::julian;
-    using gcal::gregorian;
     using gcal::week_days_long;
     using gcal::week_days_short;
     using gcal::ymd;
@@ -50,9 +49,9 @@ namespace tk
     using trn::tran_str_array;
 
     using bcolor::print;
-    using bcolor::println;
     using bcolor::print_color;
     using bcolor::print_color_reset;
+    using bcolor::println;
 
     struct GetLocal
     {
@@ -162,30 +161,31 @@ namespace tk
         GetTimeZoneInformation(&tzi);
         SYSTEMTIME lt;
         GetLocalTime(&lt);
-        local_offset = -tzi.Bias / 60.0; // convert minutes to hours
+        local_offset = static_cast<float>(-tzi.Bias / 60.0); // convert minutes to hours
         _year = lt.wYear;
 #elif defined(TKUNIX)
         time_t mytime = time(0);
         struct tm tm_ptr;
         localtime_r(&mytime, &tm_ptr);
-        local_offset = (double)tm_ptr.tm_gmtoff / 60 / 60;
+        local_offset = static_cast<float>((double)tm_ptr.tm_gmtoff / 60 / 60);
         _year = tm_ptr.tm_year + 1900;
 #endif
 
         return {local_offset, _year};
     }
 
-    int wd_id(double jd)
-    {
-        int _jd = round(jd);
-        int j = _jd + 1;
-        return fmod(j, 7);
-    }
     int wdid(double jd)
     {
         int _jd = round(jd);
         int j = _jd + 2;
-        return fmod(j, 7);
+        return static_cast<int>(fmod(j, 7));
+    }
+
+    int wd_id(double jd)
+    {
+        int _jd = round(jd);
+        int j = _jd + 1;
+        return static_cast<int>(fmod(j, 7));
     }
     BcalInfo bcalInfo(int year, int month, int day, optional<Languages> lang = nullopt)
     {

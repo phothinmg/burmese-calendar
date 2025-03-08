@@ -7,7 +7,7 @@
 #include <numeric>
 #include <sstream>
 
-using namespace std;
+
 
 namespace trn{
     enum Languages
@@ -15,7 +15,7 @@ namespace trn{
         English,
         Burmese
     };
-    vector<pair<string,string>> _langs={
+    std::vector<std::pair<std::string,std::string>> _langs={
         {"Sunday", "တနင်္ဂနွေ"}, {"Monday", "တနင်္လာ"}, {"Tuesday", "အင်္ဂါ"}, {"Wednesday", "ဗုဒ္ဓဟူး"}, 
         {"Thursday", "ကြာသပတေး"}, {"Friday", "သောကြာ"}, {"Saturday", "စနေ"}, {"January", "ဇန်နဝါရီ"}, 
         {"February", "ဖေဖော်ဝါရီ"}, {"March", "မတ်"}, {"April", "ဧပြီ"}, {"May", "မေ"}, {"June", "ဇွန်"}, 
@@ -37,14 +37,14 @@ namespace trn{
          {"Buddha Day", "ဗုဒ္ဓနေ့"}, {"Beginning of Buddhist Lent", "ဓမ္မစကြာနေ့"}, {"End of Buddhist Lent", "သီတင်းကျွတ်မီးထွန်းပွဲ"}, 
          {"Tazaungdaing", "တန်ဆောင်တိုင်"}, {"National Day", "အမျိုးသားနေ့"}, {"Karen New Year's Day", "ကရင်နှစ်သစ်ကူး"}, {"Tabaung Pwe", "တပေါင်းပွဲ"}
     };
-    unordered_map<string, string> _lang_map = []() {
-        unordered_map<string, string> map;
+    std::unordered_map<std::string, std::string> _lang_map = []() {
+        std::unordered_map<std::string, std::string> map;
         for (const auto& pair : _langs) {
             map[pair.first] = pair.second;
         }
         return map;
     }();
-    string tran_str(string str,  Languages lang)
+    std::string tran_str(std::string str,  Languages lang)
     {
         std::string sttr;
         if (lang == Languages::English)
@@ -61,10 +61,10 @@ namespace trn{
         }
         return sttr;
     }
-    vector<string> tran_str_array(vector<string> strs,  Languages lang)
+    std::vector<std::string> tran_str_array(std::vector<std::string> strs,  Languages lang)
     {
         
-        vector<string> translated;
+        std::vector<std::string> translated;
         for (const auto &str : strs)
         {
             if (lang == English)
@@ -86,11 +86,11 @@ namespace trn{
         }
         return translated;
     }
-    string tran_num(int a,  Languages lang)
+    std::string tran_num(int a,  Languages lang)
     {
      
-        vector<string> b = {"၀", "၁", "၂", "၃", "၄", "၅", "၆", "၇", "၈", "၉"};
-        string r;
+        std::vector<std::string> b = {"၀", "၁", "၂", "၃", "၄", "၅", "၆", "၇", "၈", "၉"};
+        std::string r;
 
         if (lang == Languages::English)
         {
@@ -98,16 +98,16 @@ namespace trn{
         }
         else
         {
-            string aStr = to_string(a);
-            vector<string> bb;
+            std::string aStr = to_string(a);
+            std::vector<std::string> bb;
 
             for (char i : aStr)
             {
                 int index = i - '0';
-                string x = b[index];
+                std::string x = b[index];
                 bb.push_back(x);
             }
-            r = accumulate(bb.begin(), bb.end(), string());
+            r = std::accumulate(bb.begin(), bb.end(), std::string());
         }
         return r;
     }

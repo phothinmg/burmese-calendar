@@ -1,6 +1,6 @@
 
 /*
-Calculae the relations of  Gregorian calendar and Julian[Julian Calendar Date,Julian Date,Julian Day Number]  
+Calculae the relations of  Gregorian calendar and Julian[Julian Calendar Date,Julian Date,Julian Day Number]
 
 @phothinmg , 2025
 
@@ -11,8 +11,8 @@ References:
 
     - Difference between Gregorian and Julian calendar dates
       https://en.wikipedia.org/wiki/Gregorian_calendar
-  
-*/ 
+
+*/
 
 #ifndef GCAL_HPP_
 #define GCAL_HPP_
@@ -126,7 +126,6 @@ namespace gcal
         }
         return floor(d) - 1;
     }
-    
 
     /// @brief Calculates the secular difference for the given year,determining the difference between the Julian and Gregorian calendar systems.
     /// @param y The year for which the secular difference is to be calculated.
@@ -134,7 +133,7 @@ namespace gcal
     /// If converting from Julian to Gregorian, add the result. If converting from Gregorian to Julian, subtract.
     int secular_diff(const int &y)
     {
-        return floor(y / 100) - floor(y / 400) - 2;
+        return static_cast<int>(floor(y / 100) - floor(y / 400) - 2);
     }
     gt check_g(const int &y, const int &m, const int &d)
     {
@@ -153,16 +152,16 @@ namespace gcal
         int _minute = minute.value_or(0);
         int _seconds = seconds.value_or(0);
         float tz = tz_offset.value_or(0);
-        int a = INT(year / 100.0);
+        int a = static_cast<int>(INT(year / 100.0));
         double b = 2 - a + INT(a / 4.0);
         float tzos = tz / 24;
         float def = (_hour - 12) / 24.0 + _minute / 1440.0 + _seconds / 86400.0;
         double _jd = INT(365.25 * (_year + 4716)) + INT(30.6001 * (_month + 1)) + _day + b - 1524.5 + tzos + def;
         double jd = ckd == isp ? _jd + 10 : _jd;
-        int jdn = round(jd);
-        return {jd,jdn};
+        int jdn = static_cast<int>(round(jd));
+        return {jd, jdn};
     }
-    ymdhns jd2dt(double jd,optional<float> tz_offset = nullopt)
+    ymdhns jd2dt(double jd, optional<float> tz_offset = nullopt)
     {
         float tz = tz_offset.value_or(0.0);
         double temp = jd + 0.5 + (tz / 24);
@@ -176,12 +175,12 @@ namespace gcal
         }
 
         int B = A + 1524;
-        int C = INT((B - 122.1) / 365.25);
-        int D = INT(365.25 * C);
-        int E = INT((B - D) / 30.6001);
+        double C = INT((B - 122.1) / 365.25);
+        double D = INT(365.25 * C);
+        double E = INT((B - D) / 30.6001);
 
-        int day = B - D - INT(30.6001 * E) + F;
-        int month = E - 1;
+        int day = static_cast<int>(B - D - INT(30.6001 * E) + F);
+        int month = static_cast<int>(E - 1);
         if (E > 13)
         {
             month = E - 13;
@@ -192,21 +191,26 @@ namespace gcal
             year = C - 4715;
         }
         double P = F * 24;
-        int hour = trunc(P);
+        int hour = static_cast<int>(trunc(P));
         double H = (P - hour) * 60;
-        int minute = trunc(H);
+        int minute = static_cast<int>(trunc(H));
         double O = (H - minute) * 60;
-        int seconds = round(O);
+        int seconds = static_cast<int>(round(O));
+
         return {year, month, day, hour, minute, seconds};
     }
-    ymd cal_convert(ct ct_to,int y,int m, int d)
+    ymd cal_convert(ct ct_to, int y, int m, int d)
     {
         jdjdn j = dt2jd(y, m, d);
         int diff = secular_diff(y);
         double jdd = ct_to == julian ? j.jd - diff : j.jd + diff;
         ymdhns dt = jd2dt(jdd);
-        return {year : dt.year, month : dt.month, day : dt.day};
+        int year = dt.year;
+        int month = dt.month;
+        int day = dt.day;
+        return {year, month, day};
     }
-} // namespace gcal
+
+}
 
 #endif // GCAL_HPP_
