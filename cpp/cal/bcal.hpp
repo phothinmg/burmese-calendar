@@ -1,5 +1,5 @@
-#ifndef BCAL_H
-#define BCAL_H
+#ifndef BCAL_HPP_
+#define BCAL_HPP_
 
 #include <iostream>
 #include <string>

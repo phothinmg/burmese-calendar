@@ -4,6 +4,7 @@
 #include "cal/bcal.hpp"
 #include "cal/gcal.hpp"
 #include "cal/trans.hpp"
+#include "plib/pcolor.hpp"
 
 #include <string>
 #include <optional>
@@ -30,12 +31,13 @@ namespace tk
     using gcal::cal_convert;
     using gcal::ct;
     using gcal::dt2jd;
-    using gcal::jd2dt;
     using gcal::g_months_long;
     using gcal::g_months_short;
     using gcal::gregorian;
+    using gcal::jd2dt;
     using gcal::jdjdn;
     using gcal::julian;
+    using gcal::gregorian;
     using gcal::week_days_long;
     using gcal::week_days_short;
     using gcal::ymd;
@@ -46,6 +48,11 @@ namespace tk
     using trn::tran_num;
     using trn::tran_str;
     using trn::tran_str_array;
+
+    using bcolor::print;
+    using bcolor::println;
+    using bcolor::print_color;
+    using bcolor::print_color_reset;
 
     struct GetLocal
     {
@@ -233,7 +240,6 @@ namespace tk
         vector<string> _temp_ssys_str;
         vector<int> _temp_bys;
         vector<string> _temp_bys_str;
-        
 
         for (int i = 0; i < 12; i++)
         {
@@ -241,8 +247,8 @@ namespace tk
             int month = i + 1;
             string month_str_long = tran_str(g_months_long[i], lan);
             string month_str_short = g_months_short[i];
-             vector<int> _temp_bms;
-             vector<string> _temp_bms_str;
+            vector<int> _temp_bms;
+            vector<string> _temp_bms_str;
             vector<Dv> date_views;
             for (int j = 0; j < days_in_month; j++)
             {
@@ -269,29 +275,30 @@ namespace tk
             vector<string> sasana_years_str = uniqueVector(_temp_ssys_str);
             vector<int> burmese_years = uniqueVector(_temp_bys);
             vector<string> burmese_years_str = uniqueVector(_temp_bys_str);
-            vector<int> burmese_months =  uniqueVector(_temp_bms);
-            vector<string> burmese_months_str =  uniqueVector(_temp_bms_str);
+            vector<int> burmese_months = uniqueVector(_temp_bms);
+            vector<string> burmese_months_str = uniqueVector(_temp_bms_str);
             Mv mv = {
-                year,year_str,month,month_str_long,month_str_short,days_in_month,sasana_years,
-                sasana_years_str,burmese_years,burmese_years_str,burmese_months,burmese_months_str,date_views
-            };
+                year, year_str, month, month_str_long, month_str_short, days_in_month, sasana_years,
+                sasana_years_str, burmese_years, burmese_years_str, burmese_months, burmese_months_str, date_views};
             month_views.push_back(mv);
         }
         vector<int> sasana_years = uniqueVector(_temp_ssys);
         vector<string> sasana_years_str = uniqueVector(_temp_ssys_str);
         vector<int> burmese_years = uniqueVector(_temp_bys);
         vector<string> burmese_years_str = uniqueVector(_temp_bys_str);
-        Yv yv = {year,year_str,days_in_year,sasana_years,sasana_years_str,burmese_years,burmese_years_str,month_views};
+        Yv yv = {year, year_str, days_in_year, sasana_years, sasana_years_str, burmese_years, burmese_years_str, month_views};
 
         return yv;
     }
-    Mv month_v(int year,int month){
+    Mv month_v(int year, int month)
+    {
         Yv yv = year_v(year);
         Mv mv = yv.month_views[month - 1];
         return mv;
     }
 
-    Dv day_v(int year,int month,int day){
+    Dv day_v(int year, int month, int day)
+    {
         Yv yv = year_v(year);
         Mv mv = yv.month_views[month - 1];
         Dv dv = mv.date_views[day - 1];
