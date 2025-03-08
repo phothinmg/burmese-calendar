@@ -14,7 +14,7 @@
     "check": "biome check --write src && biome format --write src",
     "build": "./build.js",
     "noda": "./noda/noda.js",
-    "docs:build": "./web/build.js"
+    "css": "npx @tailwindcss/cli -i ./docs/cal.css -o ./docs/index.css --minify"
   },
   "keywords": [
     "Gregorian calendar",
