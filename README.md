@@ -13,7 +13,8 @@
 
 Gregorian calendar to some Burmese calendar information.
 
-**Demo :** https://phothinmg.github.io/demo-bcal/
+Demo : https://phothinmg.github.io/demo-bcal/
+
 ---
 
 ### Acknowledgement
