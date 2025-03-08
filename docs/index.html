@@ -3,20 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/burmese-calendar@1.1.2/cdn/index.min.js"></script>
+    <meta http-equiv="Cache-control" content="max-age=31536000" />
+    <meta name="description" content="Burmese Calendar" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <script type="module" src="./main.js"></script>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="index.css" />
     <title>Burmese Calendar</title>
   </head>
   <body>
     <main>
-      <div class="nav-bar" id="navbar">
+      <div class="logo-div">
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Peacock_symbol_Burma.svg"
           alt="pk"
-          width="54"
-          height="54"
+          width="72"
+          height="72"
         />
+      </div>
+      <div class="nav-bar" id="navbar">
+        <h3 class="logo-text">Burmese Calendar</h3>
         <div class="right-bar">
           <a href="https://github.com/phothinmg/thetkarit" target="_blank">
             <svg
@@ -49,7 +55,6 @@
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-sun"
             >
               <title>Theme</title>
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -66,7 +71,5 @@
         <div id="dv"></div>
       </div>
     </main>
-    
-    <script src="./index.js"></script>
   </body>
 </html>

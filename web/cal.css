@@ -11,7 +11,7 @@
     @apply antialiased font-poppins bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-400 p-[20px] my-0 mx-auto;
   }
   main {
-    @apply items-center m-auto h-full max-w-7xl py-6 px-9 rounded-md max-md:px-3;
+    @apply items-center m-auto h-auto max-w-7xl py-3 px-9 rounded-md max-md:px-3;
   }
   h3 {
     @apply text-2xl font-medium;
@@ -23,27 +23,23 @@
 @layer components {
   /* Text red and green */
   .hd {
-    @apply !text-red-500 dark:!text-red-400 font-medium;
+    @apply !text-[#A30000] dark:!text-[#FF9494] font-medium;
   }
   .gre {
-    @apply !text-green-700;
+    @apply !text-green-700 dark:!text-[#00DB00];
   }
   /* -------------------------- */
+  .logo-div{
+    @apply flex items-center justify-center p-5;
+  }
+  .logo-text{
+    @apply text-2xl max-md:text-xl mt-5;
+  }
   .nav-bar {
     @apply flex flex-row justify-between py-3 mb-3;
   }
   .nav-bar .right-bar {
     @apply flex flex-row pt-5 gap-8 max-md:gap-3;
-  }
-  /* ---------------------------- Home ------------------------------------------ */
-  .home {
-    @apply flex flex-col py-5 px-5;
-  }
-  .home h3 {
-    @apply text-xl mb-4 max-md:text-lg;
-  }
-  .home p {
-    @apply text-[16px] max-md:text-sm indent-8 text-justify;
   }
   /* --------------------------- Calendar ------------------------------------ */
   .cal-header {
@@ -76,6 +72,9 @@
   .today{
     @apply !inline-flex !items-center !rounded-full !bg-green-50 !px-2.5 !py-1 !text-sm !font-semibold !text-green-700 !ring-1 !ring-green-600/20 !ring-inset
   }
+  .today-h{
+    @apply !inline-flex !items-center !rounded-full !bg-green-50 !px-2.5 !py-1 !text-sm !font-semibold !text-[#A30000] !ring-1 !ring-green-600/20 !ring-inset
+  }
   /* ------------------- */
   .datediv {
     @apply flex justify-between p-[3px] max-md:mb-[3px];
@@ -94,7 +93,7 @@
     @apply flex flex-col mt-[5px] gap-[3px] max-md:flex-row p-[3px] max-md:justify-between;
   }
   .bmspan {
-    @apply text-xs text-left;
+    @apply text-xs text-left font-medium;
   }
   .fmspan {
     @apply ml-[7px];
