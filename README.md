@@ -5,6 +5,7 @@
 
 [![GitHub License](https://img.shields.io/github/license/phothinmg/burmese-calendar)](https://github.com/phothinmg/burmese-calendar/blob/main/LICENSE)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/phothinmg/burmese-calendar/.github%2Fworkflows%2Fnpm-publish.yaml)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/phothinmg/burmese-calendar/.github%2Fworkflows%2Fcmake-multi-platform.yml)
 ![NPM Version](https://img.shields.io/npm/v/burmese-calendar)
 
 
@@ -12,12 +13,12 @@
 
 Gregorian calendar to some Burmese calendar information.
 
-
+**Demo :** https://phothinmg.github.io/demo-bcal/
 ---
 
 ### Acknowledgement
 
-### Burmese Calendar
+#### Burmese Calendar
 
 - The Algorithm for calculation of Burmese Calendar (Myanmar Calendar) and astrological calendar days by Dr. Yan Naing Aye.
 
@@ -27,7 +28,7 @@ Gregorian calendar to some Burmese calendar information.
 
   https://cool-emerald.blogspot.com/2013/12/myanmar-astrological-calendar-days.html
 
-### Julian Date and Moon Phases
+#### Julian Date and Moon Phases
 
 - A collection of astronomy related programs, algorithms, tutorials, data and implementation of the algorithm from Meeus' Astronomical Algorithms for computing the dates of the phases of the Moon by Greg Miller (gmiller@gregmiller.net).
 
@@ -35,9 +36,14 @@ Gregorian calendar to some Burmese calendar information.
 
 ---
 
+
+---
+
+### Node Js
+
 **Api docs :**  [https://www.jsdocs.io/package/burmese-calendar](https://www.jsdocs.io/package/burmese-calendar)
 
-### Install
+#### Install
 
 ```bash
 npm i burmese-calendar
