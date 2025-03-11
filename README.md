@@ -56,7 +56,7 @@ yarn add burmese-calendar
 pnpm add burmese-calendar
 ```
 
-### Example Usage
+### Example Usage for Node js
 
 ```js
 
