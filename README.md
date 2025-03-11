@@ -4,9 +4,10 @@
 </div>
 
 [![GitHub License](https://img.shields.io/github/license/phothinmg/burmese-calendar)](https://github.com/phothinmg/burmese-calendar/blob/main/LICENSE)
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/phothinmg/burmese-calendar/.github%2Fworkflows%2Fnpm-publish.yaml)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/phothinmg/burmese-calendar/.github%2Fworkflows%2Fnpm-publish.yaml?logo=npm&label=npm)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/phothinmg/burmese-calendar/.github%2Fworkflows%2Fcmake-multi-platform.yml?logo=github&label=Cmake%20Multi%20Platform)
 ![NPM Version](https://img.shields.io/npm/v/burmese-calendar)
-[![ CMake on multiple platforms](https://github.com/phothinmg/burmese-calendar/workflows/CMakeOnMultiplePlatforms/badge.svg)](https://github.com/phothinmg/burmese-calendar/actions?query=workflow%3ACMakeOnMultiplePlatforms)
+
 
 
 ## Overview
@@ -62,6 +63,8 @@ pnpm add burmese-calendar
 
 import { BurmeseCal } from "burmese-calendar"; // esm
 const { BurmeseCal } = require("burmese-calendar"); //common js
+
+const bcal = new BurmeseCal();
 
 // Date Time to jd and jdn
 const julian = bcal.datetimeToJd({ year: 2025, month: 3, day: 6 ,hour:23,minutes:25,seconds:22}); // { jd: 2460741.475949074, jdn: 2460741 }
