@@ -5,8 +5,8 @@
 
 [![GitHub License](https://img.shields.io/github/license/phothinmg/burmese-calendar)](https://github.com/phothinmg/burmese-calendar/blob/main/LICENSE)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/phothinmg/burmese-calendar/.github%2Fworkflows%2Fnpm-publish.yaml)
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/phothinmg/burmese-calendar/.github%2Fworkflows%2Fcmake-multi-platform.yml)
 ![NPM Version](https://img.shields.io/npm/v/burmese-calendar)
+[![ CMake on multiple platforms](https://github.com/phothinmg/burmese-calendar/workflows/CMakeOnMultiplePlatforms/badge.svg)](https://github.com/phothinmg/burmese-calendar/actions?query=workflow%3ACMakeOnMultiplePlatforms)
 
 
 ## Overview
@@ -38,8 +38,6 @@ Demo : https://phothinmg.github.io/demo-bcal/
 ---
 
 
----
-
 ## Node Js
 
 **Api docs :**  [https://www.jsdocs.io/package/burmese-calendar](https://www.jsdocs.io/package/burmese-calendar)
@@ -57,26 +55,6 @@ yarn add burmese-calendar
 ```bash
 pnpm add burmese-calendar
 ```
-
-## Browser
-
-**jsDelivr :** [https://www.jsdelivr.com/package/npm/burmese-calendar](https://www.jsdelivr.com/package/npm/burmese-calendar)
-
-```html
-<script src="https://cdn.jsdelivr.net/npm/burmese-calendar/cdn/index.min.js"></script>
-```
-
-**Unpkg**
-
-```html
-<script src="https://unpkg.com/burmese-calendar/cdn/index.js"></script>
-```
-
----
-
-
-
-
 
 ### Example Usage
 
@@ -113,6 +91,30 @@ const mv = bcal.monthView({ year: 2025, month: 3 });
 const yv = bcal.yearView({ year: 2025 });
 
 ```
+
+---
+
+## Browser
+
+**jsDelivr :** [https://www.jsdelivr.com/package/npm/burmese-calendar](https://www.jsdelivr.com/package/npm/burmese-calendar)
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/burmese-calendar/cdn/index.min.js"></script>
+```
+
+**Unpkg**
+
+```html
+<script src="https://unpkg.com/burmese-calendar/cdn/index.js"></script>
+```
+
+---
+
+
+
+
+
+
 
 
     

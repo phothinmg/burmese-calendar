@@ -93,12 +93,12 @@ namespace gcal
         optional<int> seconds = nullopt;
         optional<float> tz_offset = nullopt;
     };
-    struct jdjdn
+    struct Dt2Jd
     {
         double jd;
         int jdn;
     };
-    struct ymdhns
+    struct Jd2Dt
     {
         int year;
         int month;
@@ -107,7 +107,7 @@ namespace gcal
         int minute;
         int seconds;
     };
-    struct ymd
+    struct Ymd
     {
         int year;
         int month;
@@ -142,26 +142,47 @@ namespace gcal
         return is_not ? isnot : is_p ? isp
                                      : isg;
     }
-    jdjdn dt2jd(int year, int month, int day, optional<int> hour = nullopt, optional<int> minute = nullopt, optional<int> seconds = nullopt, optional<float> tz_offset = nullopt)
+    Dt2Jd dt2jd(int year, int month, int day, optional<int> hour = nullopt, optional<int> minute = nullopt, optional<int> seconds = nullopt, optional<float> tz_offset = nullopt)
     {
-        gcal::gt ckd = gcal::check_g(year, month, day);
-        int _day = ckd == isnot ? 4 : day;
-        int _year = month < 3 ? year - 1 : year;
-        int _month = month < 3 ? month + 12 : month;
+        gcal::gt result = gcal::check_g(year, month, day);
+        if (result == isnot)
+        {
+            day = 4;
+        }
+
         int _hour = hour.value_or(12);
         int _minute = minute.value_or(0);
         int _seconds = seconds.value_or(0);
-        float tz = tz_offset.value_or(0);
-        int a = static_cast<int>(INT(year / 100.0));
-        double b = 2 - a + INT(a / 4.0);
+        float tz = tz_offset.value_or(0.0);
+
         float tzos = tz / 24;
         float def = (_hour - 12) / 24.0 + _minute / 1440.0 + _seconds / 86400.0;
-        double _jd = INT(365.25 * (_year + 4716)) + INT(30.6001 * (_month + 1)) + _day + b - 1524.5 + tzos + def;
-        double jd = ckd == isp ? _jd + 10 : _jd;
+
+        double a = floor((month - 3) / 12);
+        double x4 = year + a;
+        double x3 = floor(x4 / 100);
+        double x2 = fmod(x4, 100);
+        double x1 = month - 12 * a - 3;
+
+        double _jdn =
+            floor((146097 * x3) / 4) +
+            floor((36525 * x2) / 100) +
+            floor((153 * x1 + 2) / 5) +
+            day +
+            1721119;
+
+        double jd = _jdn + tzos + def;
+        if (result == isp)
+        {
+            jd += 10;
+        }
         int jdn = static_cast<int>(round(jd));
-        return {jd, jdn};
+        return {
+            jd,
+            jdn,
+        };
     }
-    ymdhns jd2dt(double jd, optional<float> tz_offset = nullopt)
+    Jd2Dt jddt(double jd, optional<float> tz_offset = nullopt)
     {
         float tz = tz_offset.value_or(0.0);
         double temp = jd + 0.5 + (tz / 24);
@@ -199,12 +220,50 @@ namespace gcal
 
         return {year, month, day, hour, minute, seconds};
     }
-    ymd cal_convert(ct ct_to, int y, int m, int d)
+    Jd2Dt jd2dt(double jd, optional<float> tz_offset = nullopt)
     {
-        jdjdn j = dt2jd(y, m, d);
+        float tz = tz_offset.value_or(0.0);
+        double jdd = jd + tz / 24;
+
+        double jdn = round(jdd);
+
+        double a = 4 * jdn - 6884477;
+        double x3 = floor(a / 146097);
+        double r3 = fmod(a, 146097);
+
+        double b = 100 * floor(r3 / 4) + 99;
+        double x2 = floor(b / 36525);
+        double r2 = fmod(b, 36525);
+
+        double c = 5 * floor(r2 / 100) + 2;
+        double x1 = floor(c / 153);
+        double r1 = fmod(c, 153);
+
+        double cc = floor((x1 + 2) / 12);
+        int year = static_cast<int>(100 * x3 + x2 + cc);
+        int month = static_cast<int>(x1 - 12 * cc + 3);
+        int day = static_cast<int>(floor(r1 / 5) + 1);
+
+        double j = floor(jdd);
+        double fjdn = jdd - j;
+        double xx1 =
+            fjdn >= 0.5
+                ? (fjdn * 86400 - 43200) / 3600
+                : (fjdn * 86400 + 43200) / 3600;
+        int hour = static_cast<int>(floor(xx1));
+        double xx2 = (xx1 - hour) * 3600;
+        double xx3 = xx2 / 60;
+        int minutes = static_cast<int>(floor(xx3));
+        int seconds = floor((xx3 - minutes) * 60);
+
+        return {year, month, day, hour, minutes, seconds};
+    }
+    Ymd cal_convert(ct ct_to, int y, int m, int d)
+    {
+        Dt2Jd j = dt2jd(y, m, d);
         int diff = secular_diff(y);
         double jdd = ct_to == julian ? j.jd - diff : j.jd + diff;
-        ymdhns dt = jd2dt(jdd);
+        Jd2Dt dt = jd2dt(jdd);
         int year = dt.year;
         int month = dt.month;
         int day = dt.day;

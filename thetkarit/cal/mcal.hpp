@@ -1,5 +1,5 @@
-#ifndef BCAL_HPP_
-#define BCAL_HPP_
+#ifndef MCAL_HPP_
+#define MCAL_HPP_
 
 #include <iostream>
 #include <string>
@@ -11,7 +11,7 @@
 
 using namespace std;
 
-namespace bcal
+namespace mcal
 {
     /// @brief  The length of a solar year in the Burmese calendar is defined as 1577917828/4320000 (365.2587565) days [Irwin, 1909].
     double SY = 1577917828 / 4320000;
@@ -609,6 +609,6 @@ namespace bcal
 
         return aa;
     }
-} // namespace gcal
+} // namespace mcal
 
-#endif // BCAL_H
+#endif // MCAL_H

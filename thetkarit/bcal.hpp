@@ -1,7 +1,7 @@
-#ifndef TKRIT_HPP_
-#define TKRIT_HPP_
+#ifndef BCAL_HPP_
+#define BCAL_HPP_
 
-#include "cal/bcal.hpp"
+#include "cal/mcal.hpp"
 #include "cal/gcal.hpp"
 #include "cal/trans.hpp"
 #include "plib/pcolor.hpp"
@@ -20,27 +20,31 @@ using namespace std;
 #include <sys/time.h>
 #endif
 
-namespace tk
+namespace bcal
 {
 
-    using bcal::Astros;
-    using bcal::getAstro;
-    using bcal::holidays;
-    using bcal::J2B;
-    using bcal::j2b;
-    using gcal::cal_convert;
+    using mcal::Astros;
+    using mcal::J2B;
+    using mcal::getAstro;
+    using mcal::holidays;
+    using mcal::j2b;
+
     using gcal::ct;
-    using gcal::dt2jd;
+    using gcal::Dt2Jd;
+    using gcal::Jd2Dt;
+    using gcal::Ymd;
+    using gcal::gregorian;
+    using gcal::julian;
     using gcal::g_months_long;
     using gcal::g_months_short;
-    using gcal::gregorian;
-    using gcal::jd2dt;
-    using gcal::jdjdn;
-    using gcal::julian;
     using gcal::week_days_long;
     using gcal::week_days_short;
-    using gcal::ymd;
-    using gcal::ymdhns;
+    using gcal::cal_convert;
+    using gcal::dt2jd;
+    using gcal::jd2dt;
+ 
+  
+
     using trn::Burmese;
     using trn::English;
     using trn::Languages;
@@ -49,9 +53,10 @@ namespace tk
     using trn::tran_str_array;
 
     using bcolor::print;
+    using bcolor::println;
     using bcolor::print_color;
     using bcolor::print_color_reset;
-    using bcolor::println;
+   
 
     struct GetLocal
     {
@@ -66,6 +71,7 @@ namespace tk
         string sasana_year_str;
         /// @brief Burmese Year ME
         int burmese_year;
+        /// @brief Burmese Year ME string
         string burmese_year_str;
         int burmese_month_index;
         string burmese_month_str;
@@ -190,7 +196,7 @@ namespace tk
     BcalInfo bcalInfo(int year, int month, int day, optional<Languages> lang = nullopt)
     {
         Languages lan = lang.value_or(English);
-        jdjdn j = dt2jd(year, month, day);
+        Dt2Jd j = dt2jd(year, month, day);
         J2B bdt = j2b(j.jd);
         int weekday_id = wdid(j.jd);
         Astros ast = getAstro(bdt.by, bdt.bm, bdt.bml, bdt.bd, weekday_id);
@@ -254,7 +260,7 @@ namespace tk
             {
                 int day = j + 1;
                 string day_str = tran_num(day, lan);
-                jdjdn _jd = dt2jd(year, month, day, 12, 0, 0, loc.local_offset);
+                Dt2Jd _jd = dt2jd(year, month, day, 12, 0, 0, loc.local_offset);
                 int jdn = _jd.jdn;
                 int _wdid = wd_id(_jd.jd);
                 string wd_str_long = tran_str(week_days_long[_wdid], lan);
@@ -306,6 +312,6 @@ namespace tk
         return dv;
     }
 
-} // namespace tk
+} // namespace bcal
 
-#endif // TKRIT_HPP_
+#endif // BCAL_HPP_
