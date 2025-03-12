@@ -115,7 +115,7 @@ const yv = bcal.yearView({ year: 2025 });
 
 ## C++
 
-`bcal.hpp` and its dependencies in thetkarit folder , download zip here.
+`bcal.hpp` and its dependencies in thetkarit folder , visit [here](https://github.com/phothinmg/burmese-calendar/releases/latest) and download `thetkarit.zip`.
 
 
 ### Run example in Linux 
