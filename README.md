@@ -14,11 +14,16 @@
 
 Gregorian calendar to some Burmese calendar information.
 
-Demo : https://phothinmg.github.io/demo-bcal/
+This project is still in progress and is only for my Burmese calendar and astronomy studies. 
+
+***Please note that it is not guaranteed for use in production.***
+
+
+Demo Calendar : [https://phothinmg.github.io/demo-bcal/](https://phothinmg.github.io/demo-bcal/)
 
 ---
 
-## Acknowledgement
+## Resources
 
 ### Burmese Calendar
 
@@ -62,6 +67,7 @@ pnpm add burmese-calendar
 ```js
 
 import { BurmeseCal } from "burmese-calendar"; // esm
+
 const { BurmeseCal } = require("burmese-calendar"); //common js
 
 const bcal = new BurmeseCal();
@@ -105,13 +111,29 @@ const yv = bcal.yearView({ year: 2025 });
 <script src="https://cdn.jsdelivr.net/npm/burmese-calendar/cdn/index.min.js"></script>
 ```
 
-**Unpkg**
+---
 
-```html
-<script src="https://unpkg.com/burmese-calendar/cdn/index.js"></script>
+## C++
+
+`bcal.hpp` and its dependencies in thetkarit folder , download zip here.
+
+
+### Run example in Linux 
+
+Clone git repository , build it using cmake, and run it as follows:
+
+```bash
+$ git clone https://github.com/phothinmg/burmese-calendar.git
+$ cd burmese-calendar
+$ mkdir build
+$ cd build
+$ cmake ..
+$ make
+$ ./bcal
 ```
 
 ---
+
 
 
 

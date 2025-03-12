@@ -23,6 +23,7 @@ await (async () => {
       },
       {
         path: "./src/helpers/index.ts",
+        removeExport: true,
       },
       {
         path: "./src/types/index.ts",

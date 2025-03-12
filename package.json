@@ -24,7 +24,7 @@
     "email": "phothinmg@disroot.org",
     "url": "https://github.com/phothinmg"
   },
-  "license": "ISC",
+  "license": "MIT",
   "description": "Gregorian calendar to some Burmese calendar information",
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
